@@ -1,0 +1,24 @@
+# Node.js Internals Lab
+
+## Overview
+A collection of experiments and deep dives into how Node.js works under the hood.
+
+## Experiments
+
+### 1. Blocking the Event Loop
+Demonstrated how `JSON.stringify` on massive objects or heavy regex execution (`ReDoS`) can halt the entire Node.js process, blocking all other requests.
+
+**Key Takeaway**: Don't do CPU-intensive work on the main thread. Offload to Worker Threads.
+
+### 2. Worker Threads vs. Cluster Mode
+- **Cluster**: Spawns multiple processes (one per core). Great for HTTP servers.
+- **Worker Threads**: Spawns threads sharing the same process memory. Great for CPU-heavy tasks like image processing or cryptography.
+
+### 3. Memory Leaks
+Used `node --inspect` and Chrome DevTools to analyze heap snapshots.
+- **Common culprit**: Global variables or closures holding onto large objects indefinitely.
+- **Fix**: Proper lifecycle management and unregistering event listeners.
+
+## Custom Promise Implementation
+I wrote a custom `MyPromise` class to understand the microtask queue.
+- `queueMicrotask()` is essential for checking promise resolution immediately after the current stack clears, but before the next event loop tick.

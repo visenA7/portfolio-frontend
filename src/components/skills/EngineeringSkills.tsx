@@ -1,31 +1,59 @@
+import { Container } from "../layout/Container";
+
+const skills = [
+    {
+        category: "Backend Engineering",
+        items: [
+            "Node.js (Async hooks, Event Loop)",
+            "PostgreSQL (Indexing, Partitioning)",
+            "Redis (Pub/Sub, Streams)",
+            "Microservices & Event Sourcing"
+        ]
+    },
+    {
+        category: "Frontend Engineering",
+        items: [
+            "React 19 (Server Actions, Suspense)",
+            "Performance (Vite, Web Workers)",
+            "Tailwind CSS & Design Systems",
+            "State Management (Zustand, Redux)"
+        ]
+    },
+    {
+        category: "System Design",
+        items: [
+            "High Availability Architecture",
+            "Rate Limiting & Throttling",
+            "Database Replication & Sharding",
+            "Observability (Prometheus, Grafana)"
+        ]
+    }
+];
+
 export const EngineeringSkills = () => (
-    <section className="py-20 border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-6">
-            <h2 className="text-2xl font-bold text-white mb-6">
+    <section className="py-20 border-t border-white/10 bg-white/5">
+        <Container>
+            <h2 className="text-3xl font-bold text-white mb-12 text-center">
                 Engineering Focus
             </h2>
 
-            <pre className="bg-black/40 p-6 rounded-xl text-sm text-gray-300">
-                {`
-Backend Engineering
-- Node.js (event loop, streams, worker threads)
-- PostgreSQL (indexes, CTEs, triggers)
-- Redis (queues, caching, pub/sub)
-- BullMQ (retries, backoff, concurrency tuning)
-
-Frontend Engineering
-- React (hooks, performance tuning)
-- Tailwind (design systems)
-- State modeling
-- Accessibility
-
-System Design
-- Event-driven architecture
-- Load leveling with queues
-- Idempotent API design
-- Failure & retry modeling
-`}
-            </pre>
-        </div>
+            <div className="grid md:grid-cols-3 gap-8">
+                {skills.map((skill) => (
+                    <div key={skill.category} className="bg-[#0B0F14] p-6 rounded-2xl border border-white/10 hover:border-sky-500/50 transition-colors">
+                        <h3 className="text-xl font-bold text-white mb-6 pb-2 border-b border-white/10">
+                            {skill.category}
+                        </h3>
+                        <ul className="space-y-3">
+                            {skill.items.map((item) => (
+                                <li key={item} className="flex items-center text-gray-400 text-sm">
+                                    <span className="w-1.5 h-1.5 bg-sky-500 rounded-full mr-3" />
+                                    {item}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                ))}
+            </div>
+        </Container>
     </section>
 );

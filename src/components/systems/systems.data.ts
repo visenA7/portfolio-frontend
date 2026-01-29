@@ -22,7 +22,7 @@ export const systems: System[] = [
         ]
     },
     {
-        id: "node-lab",
+        id: "node-internals",
         title: "Node.js Internals Lab",
         summary: "Event loop, workers, memory experiments",
         highlights: [
