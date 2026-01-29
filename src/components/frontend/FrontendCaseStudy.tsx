@@ -8,7 +8,7 @@ export const FrontendCaseStudy = ({
     sections,
 }: FrontendCaseStudyProps) => {
     return (
-        <section className="py-20">
+        <section className="py-16">
             <Container>
                 {/* Header */}
                 <header className="max-w-3xl">

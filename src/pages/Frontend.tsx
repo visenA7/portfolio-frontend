@@ -2,7 +2,7 @@ import { FrontendCaseStudy } from "../components/frontend/FrontendCaseStudy";
 
 export const Frontend = () => {
     return (
-        <div className="space-y-32 pb-20">
+        <div className="space-y-12 pb-20">
             <FrontendCaseStudy
                 title="Enterprise HRMS Dashboards"
                 subtitle="Complex, data-dense interfaces for managing workforce operations."

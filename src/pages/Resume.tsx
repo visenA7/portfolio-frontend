@@ -22,7 +22,7 @@ export const Resume = () => {
                         fileName={`Resume_${basics.name.replace(' ', '_')}.pdf`}
                         className="flex items-center gap-2 px-4 py-2 bg-sky-600 text-white rounded-lg hover:bg-sky-700 transition-colors font-semibold shadow-lg shadow-sky-900/20"
                     >
-                        {({ blob, url, loading, error }) =>
+                        {({ loading }) =>
                             loading ? (
                                 <span className="flex items-center gap-2">
                                     Loading Document...

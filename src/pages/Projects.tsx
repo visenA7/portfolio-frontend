@@ -33,7 +33,6 @@ const projects = [
     },
     {
         title: "Real-Time Chat Application",
-        // what should be the role? if i developed the backend and frontend then it should be fullstack with react native
         role: "Fullstack Developer",
         timeline: "Side Project -> Production",
         description: "Initially built as a side project to explore WebSockets, later engineered into the HRMS to facilitate secure internal communication between managers and employees.",
