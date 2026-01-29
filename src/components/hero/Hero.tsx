@@ -6,7 +6,7 @@ export const Hero = () => {
     return (
         <section className="py-24 border-b border-white/10">
             <Container>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-14 items-start">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-14 items-center">
 
                     {/* LEFT: Text */}
                     <div>
