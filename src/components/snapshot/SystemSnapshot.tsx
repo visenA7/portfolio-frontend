@@ -2,7 +2,9 @@ const stats = [
     "⚙️ 1M+ events processed",
     "⏱ <200ms avg latency",
     "📦 Async-first architecture",
-    "🔁 Retry-safe & idempotent"
+    "🔁 Retry-safe & idempotent",
+    "⚛️ Modern React Patterns",
+    "🎨 High-Fidelity UI/UX"
 ];
 
 export const SystemSnapshot = () => (
