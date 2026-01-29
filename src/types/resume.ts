@@ -20,6 +20,7 @@ export interface Basics {
         phone: string;
         email: string;
         linkedin: string;
+        portfolio: string;
     };
     summary: string;
 }

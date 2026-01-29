@@ -58,6 +58,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
+  contactLink: {
+    fontSize: 9,
+    fontWeight: 'bold',
+    flexDirection: 'row',
+    alignItems: 'center',
+    color: '#0369A1', // Sky-700
+    textDecorationLine: 'underline',
+  },
   columns: {
     flexDirection: 'row',
     gap: 15, // Gap between columns
@@ -192,6 +200,8 @@ export const ResumeDocument = ({ data }: ResumeDocumentProps) => (
           <Text style={styles.contactItem}>{data.basics.location.city}, {data.basics.location.country}</Text>
           <Text style={styles.contactItem}>{data.basics.contact.email}</Text>
           <Text style={styles.contactItem}>{data.basics.contact.phone}</Text>
+          <Text style={styles.contactLink}>{data.basics.contact.linkedin}</Text>
+          <Text style={styles.contactLink}>{data.basics.contact.portfolio}</Text>
           {/* Add links if needed */}
         </View>
       </View>

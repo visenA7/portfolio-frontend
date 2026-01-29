@@ -11,7 +11,8 @@ export const resumeData: ResumeData = {
         "contact": {
             "phone": "09818158680",
             "email": "abhishekvisen7@gmail.com",
-            "linkedin": "LinkedIn"
+            "linkedin": "www.linkedin.com/in/abhishek-visen",
+            "portfolio": "https://abhishekvisen.netlify.app/"
         },
         "summary": "Experienced Full Stack Developer with expertise in React, Node.js, PostgreSQL, Sequelize, Drizzle ORM, Redis, Socket.io, OAuth2/JWT, Azure, CI/CD. Proven track record in developing scalable enterprise applications, optimizing performance, and leading projects. Adept at team collaboration, project management, and troubleshooting."
     },
@@ -91,7 +92,7 @@ export const resumeData: ResumeData = {
             "duration": "1 Year",
             "description": [
                 "Developed a geospatial asset management system to map electrical infrastructure.",
-                "Implemented interactive map layers using Leaflet/Mapbox and PostGIS for spatial queries.",
+                "Implemented interactive map layers using Leaflet and PostGIS for spatial queries.",
                 "Enabled offline data collection for field engineers with auto-sync capabilities."
             ]
         },
