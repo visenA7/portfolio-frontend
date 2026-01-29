@@ -8,3 +8,22 @@
 @layer components {
     /* Custom components can go here */
 }
+
+@media print {
+    body {
+        background-color: white;
+        color: black;
+    }
+
+    /* Hide Navigation and Footer */
+    nav,
+    footer {
+        display: none !important;
+    }
+
+    /* Resume specific print resets */
+    @page {
+        margin: 0;
+        size: auto;
+    }
+}
