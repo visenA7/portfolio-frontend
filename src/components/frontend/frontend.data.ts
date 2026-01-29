@@ -16,7 +16,7 @@ export const frontendTopics: FrontendTopic[] = [
         title: "GIS & Maps Dashboard",
         summary: "Interactive map visualization for spatial data analytics.",
         metrics: [
-            { label: "Map Engine", value: "Mapbox GL" },
+            { label: "Map Engine", value: "Leaflet" },
             { label: "Data Points", value: "100k+" },
             { label: "Layers", value: "Dynamic" }
         ]

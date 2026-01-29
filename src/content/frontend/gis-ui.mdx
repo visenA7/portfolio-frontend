@@ -4,20 +4,20 @@
 A complex dashboard for visualizing spatial data points (100k+) on an interactive map.
 
 ## Tech Stack
--   **Mapbox GL JS**: WebGL-powered vector maps.
--   **React-Map-GL**: React wrapper for Mapbox.
+-   **Leaflet**: Leading open-source JavaScript library for mobile-friendly interactive maps.
+-   **React-Leaflet**: React components for Leaflet maps.
 -   **Turf.js**: Geospatial analysis in the browser.
 
 ## Performance Challenges
 
 ### 1. Rendering 100k+ Points
 Adding 100k HTML markers crashes the browser.
-**Solution**: Use `GeoJSONSource` layers. Mapbox renders these on the GPU canvas, which is infinitely faster than DOM nodes.
+**Solution**: Use Leaflet's **Canvas Renderer**. Instead of creating individual DOM nodes for each marker, we render all points on a single HTML5 Canvas layer, drastically reducing memory usage and keeping the main thread free.
 
 ```tsx
-<Source id="points" type="geojson" data={largeGeoJsonData}>
-  <Layer {...circleLayerStyle} />
-</Source>
+<MapContainer preferCanvas={true}>
+  <GeoJSON data={largeGeoJsonData} />
+</MapContainer>
 ```
 
 ### 2. Clustering
