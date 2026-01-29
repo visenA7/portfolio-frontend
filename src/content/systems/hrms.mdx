@@ -1,0 +1,101 @@
+# Enterprise HRMS Platform
+
+## 1. Problem Statement
+Building an HRMS is deceptively complex. On the surface, it looks like simple CRUD: "Employee punches in/out, calculate hours, pay salary."
+
+**Reality:**
+- **Attendance accuracy is non-negotiable:** A single missed minute can affect overtime or late deductions, directly impacting payroll.
+- **Payroll is high-stakes:** Errors lead to compliance issues, financial loss, and loss of employee trust.
+- **Shift rules vary wildly:** Organizations have rotating shifts, grace periods, night shifts crossing midnight, and flexible work arrangements.
+- **Scale:** Processing attendance for thousands of employees simultaneously (e.g., 9:00 AM rush) requires robust handling.
+
+## 2. System Overview
+The system is built on a **Node.js** backend with **PostgreSQL** as the single source of truth.
+
+- **Synchronous API Layer:** Handles immediate user actions (apply leave, view payslip, chat).
+- **Asynchronous Processing Layer:** Handles heavy computations (daily attendance processing, month-end payroll generation) using **Redis** queues.
+
+### Comprehensive Module Suite
+The platform evolved into a complete workforce solution covering:
+- **Core HR:** Employee lifecycle, Location management, and Vendor management.
+- **Leave Management:** Custom accrual policies, approval workflows, and holiday calendars.
+- **Compliance:** Statutory reporting, tax handling, and role-based permissions (RBAC).
+
+## 3. Attendance & Shift System (DEEP)
+This module was the most engineer-intensive part of the platform.
+
+### Hardware Validation & Synchronization
+- **Integration:** Directly integrated with Biometric machines and Mobile GPS for field staff.
+- **Sync Logic:** A background service pulls logs from biometric hardware every minute, ensuring near real-time updates.
+- **Geo-Fencing:** Mobile punches are validated against allowed office coordinates using PostGIS.
+
+### Shift Definitions & Complexity
+We moved beyond simple "9 to 6" logic. The system supports:
+- **Grace Periods:** Configurable buffers for late entry (e.g., 15 mins).
+- **Cross-day Shifts:** Shifts starting at 10 PM and ending at 6 AM the next day.
+- **Auto-Shift Correction:** If an employee swipes in at a time closer to Shift B than Shift A, the system intelligently prompts or auto-corrects.
+
+### Async Processing Strategy
+Processing raw punch logs (biometric/web) into meaningful "Attendance Records" (Present/Absent/Half-day) is expensive.
+- **Solution:** We decoupled capture from processing.
+- Raw punches are written to an immutable `punch_logs` table.
+- A background worker picks up unprocessed logs and runs the **Shift Rule Engine**.
+- **Sequelize Transactions** ensured that updating the attendance status and linking the punch log happened atomically.
+
+## 4. Security & Compliance
+Security is integrated at the core, not an afterthought.
+- **Authentication:** Implemented **OAuth2** for secure access delegation and **JWT** for stateless session management.
+- **RBAC:** Fine-grained Permission system (e.g., `can_view_salary`, `can_approve_leave`) enforced via middleware.
+- **Audit Trails:** All sensitive actions (e.g., changing an employee's salary) are logged for compliance.
+
+
+## 5. Payroll System (DEEP)
+Payroll is a deterministic state machine.
+
+### Core Architecture
+- **Salary Structures:** Flexible JSON-based structures allowing custom components (HRA, DA, Special Allowances).
+- **Linkage:** `Attendance Summary` (Total Present Days, LOPs) -> `Payroll Engine` -> `Generated Payslip`.
+
+### Determinism & Consistency
+- **Month-end Runs:** Payroll generation is a heavy batch job. We utilized **PostgreSQL locks** to prevent concurrent modifications to employee data (e.g., salary hikes) while payroll was calculating.
+- **Verification:** Before "finalizing", the system runs a variance report (Current Month vs. Last Month) to flag anomalies (e.g., sudden 50% drop in net pay).
+
+## 6. Database & ORM Strategy (Sequence -> Drizzle)
+Over 3 years, our database strategy evolved.
+
+### Phase 1: Sequelize (The Foundation)
+We started with **Sequelize** because it was mature and production-proven.
+- **Why:** Robust migration support, easy association handling, and transaction safety.
+- **Usage:** Managed complex write operations, especially multi-table inserts in the Payroll module.
+
+### Phase 2: Introducing Drizzle ORM
+As the dataset grew, Sequelize's object hydration overhead became noticeable on read-heavy dashboards.
+- **Why Drizzle:** We needed raw SQL performance with TypeScript safety.
+- **Hybrid Approach:** We didn't rewrite everything. We started using Drizzle for:
+    - **Complex Reports:** Analytical queries requiring many joins and aggregations.
+    - **High-Frequency Reads:** Chat message history and active user lookups.
+- **Outcome:** Routes migrated to Drizzle saw a **40-60% reduction in latency** due to zero object hydration overhead.
+
+## 7. Internal One-to-One Chat System
+Integrated directly into the HRMS to secure internal communication.
+
+- **Architecture:** Hybrid WebSocket + REST.
+- **Storage:** Chat messages are durable (PostgreSQL). We refrained from using MongoDB to reduce infrastructure complexity, leveraging Postgres's JSONB and partial indexing for performance.
+- **Delivery:** We implemented an "Ack" system. If a user is offline, the message is stored as "Pending" and delivered upon reconnection.
+
+## 8. Frontend Engineering
+The interface focuses on data density and correctness.
+
+- **Complex Dashboards:** Managers view real-time attendance of hundreds of reportees. We implemented **virtualized tables** to handle 5000+ rows without lag.
+- **Payroll Wizards:** A multi-step form state machine for running payroll (Select Employees -> Verify Attendance -> process -> Check Variance -> Finalize).
+- **Role-Based Access Control (RBAC):** The frontend logic heavily relies on a central permission hook to conditionally render UI elements (e.g., "Approve Leave" button only for Managers).
+
+## 9. Failure Handling & Guarantees
+- **Idempotency:** Attendance punch APIs use a unique request ID (or biometric device ID + timestamp) to prevent duplicate entries from shaky networks.
+- **Payroll Safety:** We use database-level constraints (composite unique keys) to strictly prevent generating two payslips for the same month.
+- **Graceful Degradation:** If the biometric sync service fails, the web attendance portal remains operational.
+
+## 10. What I’d Improve at 10× Scale
+- **Read Replicas:** Separate read traffic for dashboards to a dedicated replica.
+- **Partitioning:** Partition `attendance_logs` and `chat_messages` by month/year to keep index sizes manageable.
+- **dedicated Payroll Pipeline:** Move payroll processing to a completely separate microservice with its own dedicated compute resources.

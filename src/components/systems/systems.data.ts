@@ -2,6 +2,16 @@ import type { System } from "../../types/system";
 
 export const systems: System[] = [
     {
+        id: "hrms",
+        title: "Enterprise HRMS Platform",
+        summary: "Production-grade HRMS with payroll & shift attendance",
+        highlights: [
+            "3 years production ownership",
+            "Payroll with strict correctness",
+            "PostgreSQL (Sequelize + Drizzle)"
+        ]
+    },
+    {
         id: "attendance",
         title: "Event-Driven Attendance System",
         summary: "Async pipeline handling burst attendance traffic",

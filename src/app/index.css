@@ -1,7 +1,10 @@
 @import "tailwindcss";
 
-/* Mermaid SVG containment fix */
-.mermaid svg {
-    max-width: 100%;
-    height: auto;
+@theme {
+    --color-background: #0B0F14;
+    --color-foreground: #E5E7EB;
+}
+
+@layer components {
+    /* Custom components can go here */
 }
