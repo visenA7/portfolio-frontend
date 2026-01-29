@@ -1,5 +1,6 @@
 import { useParams, Navigate } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
+import { MermaidDiagram } from "../components/common/MermaidDiagram";
 import { useState, useEffect } from "react";
 import { systems } from "../components/systems/systems.data";
 
@@ -31,12 +32,48 @@ export const SystemDetail = () => {
 
     return (
         <div className="max-w-4xl mx-auto px-6 py-20">
-            <h1 className="text-3xl font-bold text-white mb-6">
-                System: {system.title}
-            </h1>
+            <header className="mb-12 border-b border-white/10 pb-8">
+                <span className="text-sky-400 font-mono text-sm mb-3 block">
+                    System Design
+                </span>
+                <h1 className="text-4xl font-bold text-white mb-6">
+                    {system.title}
+                </h1>
+
+                <div className="flex flex-wrap gap-2">
+                    {system.highlights.map(h => (
+                        <span key={h} className="text-xs bg-sky-500/10 text-sky-300 px-3 py-1.5 rounded-full border border-sky-500/20">
+                            {h}
+                        </span>
+                    ))}
+                </div>
+            </header>
 
             <div className="prose prose-invert prose-lg max-w-none">
-                <ReactMarkdown>{content}</ReactMarkdown>
+                <ReactMarkdown
+                    components={{
+                        code(props) {
+                            const { children, className, node, ...rest } = props;
+                            // Check if the code block language is mermaid
+                            const match = /language-(\w+)/.exec(className || "");
+                            const isMermaid = match && match[1] === "mermaid";
+
+                            if (isMermaid) {
+                                // Render the MermaidDiagram component
+                                return <MermaidDiagram code={String(children).replace(/\n$/, "")} />;
+                            }
+
+                            // Default behavior for other code blocks
+                            return (
+                                <code className={className} {...rest}>
+                                    {children}
+                                </code>
+                            );
+                        },
+                    }}
+                >
+                    {content}
+                </ReactMarkdown>
             </div>
         </div>
     );

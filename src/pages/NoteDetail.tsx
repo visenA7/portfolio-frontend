@@ -1,0 +1,83 @@
+import { useParams, Navigate } from "react-router-dom";
+import ReactMarkdown from "react-markdown";
+import { MermaidDiagram } from "../components/common/MermaidDiagram";
+import { useState, useEffect } from "react";
+import { notes } from "../components/notes/notes.data";
+
+export const NoteDetail = () => {
+    const { id } = useParams();
+    const note = notes.find(n => n.id === id);
+    const [content, setContent] = useState<string>("");
+
+    useEffect(() => {
+        if (!note) return;
+
+        const loadContent = async () => {
+            try {
+                // Dynamic import of markdown content using vite's ?raw
+                const module = await import(`../content/notes/${note.id}.mdx?raw`);
+                setContent(module.default);
+            } catch (error) {
+                console.error("Failed to load content", error);
+                setContent("Failed to load note content. Please try again later.");
+            }
+        };
+
+        loadContent();
+    }, [note]);
+
+    if (!note) {
+        return <Navigate to="/404" replace />;
+    }
+
+    return (
+        <div className="max-w-4xl mx-auto px-6 py-20">
+            <header className="mb-12 border-b border-white/10 pb-8">
+                <div className="flex gap-3 text-sm text-sky-400 font-mono mb-3">
+                    <span>{note.date}</span>
+                    <span>/</span>
+                    <span>Engineering Note</span>
+                </div>
+
+                <h1 className="text-4xl font-bold text-white mb-6">
+                    {note.title}
+                </h1>
+
+                <div className="flex flex-wrap gap-2">
+                    {note.tags.map(tag => (
+                        <span key={tag} className="text-xs bg-sky-500/10 text-sky-300 px-3 py-1.5 rounded-full border border-sky-500/20">
+                            #{tag}
+                        </span>
+                    ))}
+                </div>
+            </header>
+
+            <div className="prose prose-invert prose-lg max-w-none">
+                <ReactMarkdown
+                    components={{
+                        code(props) {
+                            const { children, className, node, ...rest } = props;
+                            // Check if the code block language is mermaid
+                            const match = /language-(\w+)/.exec(className || "");
+                            const isMermaid = match && match[1] === "mermaid";
+
+                            if (isMermaid) {
+                                // Render the MermaidDiagram component
+                                return <MermaidDiagram code={String(children).replace(/\n$/, "")} />;
+                            }
+
+                            // Default behavior for other code blocks
+                            return (
+                                <code className={className} {...rest}>
+                                    {children}
+                                </code>
+                            );
+                        },
+                    }}
+                >
+                    {content}
+                </ReactMarkdown>
+            </div>
+        </div>
+    );
+};

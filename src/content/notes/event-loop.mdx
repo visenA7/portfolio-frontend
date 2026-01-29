@@ -1,0 +1,26 @@
+# Node.js Event Loop Deep Dive
+
+## The Phases
+Understanding the order of operations is crucial for predicting behavior.
+
+1.  **Timers**: `setTimeout`, `setInterval` callbacks.
+2.  **Pending Callbacks**: I/O callbacks deferred to the next loop iteration.
+3.  **Idle, Prepare**: Internal use.
+4.  **Poll**: Retrieve new I/O events.
+5.  **Check**: `setImmediate` callbacks.
+6.  **Close Callbacks**: `socket.on('close', ...)`
+
+## Microtasks vs. Macrotasks
+-   **Microtasks** (`process.nextTick`, `Promise.then`): Executed **immediately** after the current operation completes, before the event loop continues.
+-   **Macrotasks** (`setTimeout`): Executed in the next generic event loop phase.
+
+> [!WARNING]
+> Recursive process.nextTick calls can starve the event loop, preventing I/O from ever happening.
+
+## Blocking the Loop
+**Don'ts**:
+-   `JSON.stringify` on huge objects.
+-   Complex ReDoS regular expressions.
+-   Synchronous encryption (`crypto.pbkdf2Sync`).
+
+**Do**: Offload to Worker Threads or use async versions.

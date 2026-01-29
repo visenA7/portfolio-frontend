@@ -1,0 +1,34 @@
+# Real-Time Chat UI Engineering
+
+## Overview
+Designing a high-performance React UI for real-time messaging under heavy load (10k+ messages/thread).
+
+## Problem Statement
+The UI needed to handle long chat histories, real-time updates, and unreliable network conditions without degrading user experience. Rendering thousands of DOM nodes causes huge memory pressure.
+
+## Key Architectures
+
+### 1. Windowed Rendering (Virtualization)
+Instead of rendering all 10,000 messages, we only render the items currently valid in the viewport + a small buffer.
+
+```tsx
+// Concept
+<VirtualList
+  itemCount={messages.length}
+  itemSize={estimateHeight}
+  renderItem={({ index, style }) => (
+    <MessageRow style={style} message={messages[index]} />
+  )}
+/>
+```
+
+### 2. Optimistic Updates
+We don't wait for the server to confirm a message sent. We append it locally immediately with a "pending" state.
+
+1.  User hits enter -> `dispatch(addMessage({ status: 'sending' }))`
+2.  Network Request -> `POST /api/messages`
+3.  Success -> `dispatch(updateStatus({ id, status: 'sent' }))`
+4.  Error -> `dispatch(updateStatus({ id, status: 'error' }))`
+
+### 3. State Management
+We moved from Context API to **Zustand** to avoid unnecessary re-renders. Context API triggers a re-render in all consumers whenever *any* part of the value changes. Zustand allowing selecting specific slices of state.

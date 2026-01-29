@@ -1,0 +1,26 @@
+# Enterprise HRMS UI
+
+## Overview
+Building the frontend for a massive HR management system, focusing on data density and correctness.
+
+## Key Components
+
+### 1. Complex Form Wizards
+Payroll usually demands 50+ fields across multiple steps.
+-   **React Hook Form**: Used for uncontrolled inputs to prevent re-renders on keystroke.
+-   **Zod**: Schema validation shared between frontend and backend.
+
+### 2. High-Performance Data Grids
+We needed Excel-like features (sorting, filtering, col-resizing) for attendance logs.
+**Solution**: **AG Grid**. It handles virtualization and column virtualization out of the box, handling 5000+ rows with ease.
+
+### 3. Role-Based Access Control (RBAC)
+We implemented a custom `<PermissionGate>` component.
+
+```tsx
+<PermissionGate permission="APPROVE_LEAVE">
+  <Button onClick={approve}>Approve</Button>
+</PermissionGate>
+```
+
+This checks the user's JWT scopes and conditionally renders the UI. It also disabled inputs if the user had "VIEW" but not "EDIT" access.

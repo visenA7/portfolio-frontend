@@ -1,0 +1,30 @@
+# GIS & Maps Dashboard
+
+## Overview
+A complex dashboard for visualizing spatial data points (100k+) on an interactive map.
+
+## Tech Stack
+-   **Mapbox GL JS**: WebGL-powered vector maps.
+-   **React-Map-GL**: React wrapper for Mapbox.
+-   **Turf.js**: Geospatial analysis in the browser.
+
+## Performance Challenges
+
+### 1. Rendering 100k+ Points
+Adding 100k HTML markers crashes the browser.
+**Solution**: Use `GeoJSONSource` layers. Mapbox renders these on the GPU canvas, which is infinitely faster than DOM nodes.
+
+```tsx
+<Source id="points" type="geojson" data={largeGeoJsonData}>
+  <Layer {...circleLayerStyle} />
+</Source>
+```
+
+### 2. Clustering
+To prevent visual clutter, we implemented strict clustering at different zoom levels.
+-   Zoom 0-5: Metric aggregates (Avgs/Sums)
+-   Zoom 6-10: Point clusters
+-   Zoom 11+: Individual points
+
+### 3. Client-Side Filtering
+We used **Web Workers** to filter the massive GeoJSON dataset off the main thread, keeping the UI responsive during filter operations.
