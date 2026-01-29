@@ -1,4 +1,4 @@
-import { Page, Text, View, Document, StyleSheet, Link } from '@react-pdf/renderer';
+import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
 import type { ResumeData } from '../../types/resume';
 
 // Register a standard font (optional, using Helium/Helvetica by default is fine for a clean look)
