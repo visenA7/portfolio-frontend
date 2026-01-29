@@ -20,8 +20,9 @@ export const resumeData: ResumeData = {
             "React.js",
             "Redux",
             "Tailwind CSS",
-            "Leaflet/Mapbox",
+            "Leaflet",
             "TypeScript",
+            "CesiumJS"
         ],
         "backend": [
             "Node.js",

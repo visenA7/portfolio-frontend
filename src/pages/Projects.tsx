@@ -6,7 +6,7 @@ const projects = [
         role: "Lead Fullstack Engineer",
         timeline: "3 Years (Ongoing)",
         description: "A comprehensive workforce management platform handling payroll, attendance, and compliance for enterprise clients. Built to replace legacy desktop software with a cloud-native solution.",
-        tech: ["Node.js", "PostgreSQL", "React", "Redis", "Sequelize/Drizzle"],
+        tech: ["Node.js", "PostgreSQL", "React", "Redis", "Sequelize/Drizzle", "Leaflet"],
         features: [
             "Extensive Payroll Engine (Tax, Deductions, Custom Components)",
             "Biometric & Mobile GPS Attendance Sync",
@@ -21,7 +21,7 @@ const projects = [
         role: "Fullstack Developer",
         timeline: "1 Year",
         description: "A geospatial information system designed for DBVHNL to map and manage electrical infrastructure assets. Enabled engineers to visualize network data overlaid on geographical maps.",
-        tech: ["React", "Leaflet/Mapbox", "Node.js", "PostGIS", "GeoJSON"],
+        tech: ["React", "CesiumJS", "Node.js", "PostgreSQL", "GeoJSON", "Redis", "Sequelize/Drizzle", "Socket.io", "PostGIS"],
         features: [
             "Asset mapping on interactive layers",
             "Spatial queries for infrastructure planning",
@@ -33,10 +33,11 @@ const projects = [
     },
     {
         title: "Real-Time Chat Application",
-        role: "Backend Engineer",
+        // what should be the role? if i developed the backend and frontend then it should be fullstack with react native
+        role: "Fullstack Developer",
         timeline: "Side Project -> Production",
         description: "Initially built as a side project to explore WebSockets, later engineered into the HRMS to facilitate secure internal communication between managers and employees.",
-        tech: ["Socket.io", "Redis Pub/Sub", "React", "Node.js"],
+        tech: ["Socket.io", "Redis Pub/Sub", "React", "Node.js", "React Native"],
         features: [
             "1-to-1 and Group Messaging",
             "Delivery Guarantees (Sent, Delivered, Read)",
