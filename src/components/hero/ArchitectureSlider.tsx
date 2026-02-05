@@ -22,7 +22,7 @@ export const ArchitectureSlider = () => {
                     style={{ transform: `translateX(-${index * 100}%)` }}
                 >
                     {PANELS.map(({ id, Component }) => (
-                        <div key={id} className="min-w-full p-6">
+                        <div key={id} className="min-w-full p-4 md:p-6">
                             <Component />
                         </div>
                     ))}
@@ -34,7 +34,7 @@ export const ArchitectureSlider = () => {
                 <button
                     onClick={prev}
                     disabled={index === 0}
-                    className="px-3 py-1 text-sm border border-white/10 rounded disabled:opacity-30"
+                    className="px-4 py-2 min-h-[44px] text-sm border border-white/10 rounded disabled:opacity-30 transition-opacity"
                 >
                     ← Backend
                 </button>
@@ -46,7 +46,7 @@ export const ArchitectureSlider = () => {
                 <button
                     onClick={next}
                     disabled={index === PANELS.length - 1}
-                    className="px-3 py-1 text-sm border border-white/10 rounded disabled:opacity-30"
+                    className="px-4 py-2 min-h-[44px] text-sm border border-white/10 rounded disabled:opacity-30 transition-opacity"
                 >
                     Frontend →
                 </button>

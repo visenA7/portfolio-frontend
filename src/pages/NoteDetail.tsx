@@ -31,15 +31,15 @@ export const NoteDetail = () => {
     }
 
     return (
-        <div className="max-w-4xl mx-auto px-6 py-20">
-            <header className="mb-12 border-b border-white/10 pb-8">
-                <div className="flex gap-3 text-sm text-sky-400 font-mono mb-3">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+            <header className="mb-8 md:mb-12 border-b border-white/10 pb-6 md:pb-8">
+                <div className="flex gap-3 text-sm text-sky-400 font-mono mb-2 md:mb-3">
                     <span>{note.date}</span>
                     <span>/</span>
                     <span>Engineering Note</span>
                 </div>
 
-                <h1 className="text-4xl font-bold text-white mb-6">
+                <h1 className="text-3xl md:text-4xl font-bold text-white mb-4 md:mb-6">
                     {note.title}
                 </h1>
 

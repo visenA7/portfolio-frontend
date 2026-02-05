@@ -2,7 +2,7 @@ import type { Note } from "../../types/note";
 
 export const NoteCard = ({ note }: { note: Note }) => {
     return (
-        <div className="border border-white/10 rounded-xl p-6 hover:border-sky-400 transition flex flex-col h-full">
+        <div className="border border-white/10 rounded-xl p-5 md:p-6 hover:border-sky-400 transition flex flex-col h-full">
             <div className="flex justify-between items-start mb-2">
                 <span className="text-xs font-mono text-sky-400">{note.date}</span>
             </div>
@@ -25,7 +25,7 @@ export const NoteCard = ({ note }: { note: Note }) => {
 
             <a
                 href={`/notes/${note.id}`}
-                className="inline-block mt-auto text-sky-400 text-sm hover:underline"
+                className="inline-flex items-center mt-auto py-2 text-sky-400 text-sm min-h-[44px] hover:text-sky-300 hover:underline transition-colors"
             >
                 → Read Note
             </a>

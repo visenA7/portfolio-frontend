@@ -2,12 +2,12 @@ import type { FrontendTopic } from "../../types/frontend";
 
 export const FrontendCard = ({ topic }: { topic: FrontendTopic }) => {
     return (
-        <div className="border border-white/10 rounded-xl p-6 hover:border-sky-400 transition flex flex-col h-full">
+        <div className="border border-white/10 rounded-xl p-5 md:p-6 hover:border-sky-400 transition flex flex-col h-full">
             <h3 className="text-lg font-semibold text-white">
                 {topic.title}
             </h3>
 
-            <p className="mt-2 text-gray-400 flex-grow">
+            <p className="mt-2 text-gray-400 text-sm md:text-base flex-grow">
                 {topic.summary}
             </p>
 
@@ -22,7 +22,7 @@ export const FrontendCard = ({ topic }: { topic: FrontendTopic }) => {
 
             <a
                 href={`/frontend/${topic.id}`}
-                className="inline-block mt-4 text-sky-400 text-sm"
+                className="inline-flex items-center mt-4 py-2 text-sky-400 text-sm min-h-[44px] hover:text-sky-300 transition-colors"
             >
                 → Deep Dive
             </a>
