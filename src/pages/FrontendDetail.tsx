@@ -31,25 +31,25 @@ export const FrontendDetail = () => {
     }
 
     return (
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 md:py-20">
-            <header className="mb-8 md:mb-12 border-b border-white/10 pb-6 md:pb-8">
-                <span className="text-sky-400 font-mono text-sm mb-2 md:mb-3 block">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 md:py-20 transition-colors duration-300">
+            <header className="mb-8 md:mb-12 border-b border-border-custom pb-6 md:pb-8">
+                <span className="text-sky-600 dark:text-sky-400 font-semibold font-mono text-sm mb-2 md:mb-3 block">
                     Frontend Architecture
                 </span>
-                <h1 className="text-3xl md:text-4xl font-bold text-white mb-4 md:mb-6">
+                <h1 className="text-3xl md:text-4xl font-extrabold text-text-heading mb-4 md:mb-6">
                     {topic.title}
                 </h1>
 
                 <div className="flex flex-wrap gap-2">
                     {topic.metrics.map(m => (
-                        <span key={m.label} className="text-xs bg-sky-500/10 text-sky-300 px-3 py-1.5 rounded-full border border-sky-500/20">
+                        <span key={m.label} className="text-xs bg-badge text-badge-text px-3 py-1.5 rounded-full border border-badge-border font-medium">
                             {m.label}: {m.value}
                         </span>
                     ))}
                 </div>
             </header>
 
-            <div className="prose prose-invert prose-lg max-w-none">
+            <div className="prose dark:prose-invert prose-lg max-w-none text-text-muted transition-colors duration-300">
                 <ReactMarkdown
                     components={{
                         code(props) {

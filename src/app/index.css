@@ -1,12 +1,76 @@
 @import "tailwindcss";
 
+:root {
+    --bg-color: #FEFDF0; /* Light lemon cream */
+    --text-color: #1E2019; /* Olive-charcoal */
+    --border-color: rgba(45, 48, 35, 0.1); /* Subtle warm border */
+    --card-bg: #FFFFFF;
+    --card-hover-bg: #FAF9E6; /* Light lemon highlights */
+    --card-border: rgba(45, 48, 35, 0.08);
+    --text-muted: #5C5E54; /* Warm gray-olive */
+    --text-heading: #11120D; /* Near black with olive hint */
+    --badge-bg: rgba(2, 132, 199, 0.08);
+    --badge-text: #025a87;
+    --badge-border: rgba(2, 132, 199, 0.15);
+}
+
+.dark {
+    --bg-color: #0B0F14;
+    --text-color: #E5E7EB;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --card-bg: rgba(255, 255, 255, 0.02);
+    --card-hover-bg: rgba(255, 255, 255, 0.04);
+    --card-border: rgba(255, 255, 255, 0.1);
+    --text-muted: #9ca3af;
+    --text-heading: #ffffff;
+    --badge-bg: rgba(56, 189, 248, 0.1);
+    --badge-text: #38bdf8;
+    --badge-border: rgba(56, 189, 248, 0.2);
+}
+
 @theme {
-    --color-background: #0B0F14;
-    --color-foreground: #E5E7EB;
+    --color-background: var(--bg-color);
+    --color-foreground: var(--text-color);
+    
+    --color-border-custom: var(--border-color);
+    --color-card-bg: var(--card-bg);
+    --color-card-hover: var(--card-hover-bg);
+    --color-card-border: var(--card-border);
+    --color-text-muted: var(--text-muted);
+    --color-text-heading: var(--text-heading);
+    --color-badge-bg: var(--badge-bg);
+    --color-badge-text: var(--badge-text);
+    --color-badge-border: var(--badge-border);
+    
+    --animate-gradient-x: gradient-x 6s ease infinite;
+    --animate-pulse-glow: pulse-glow 2s infinite alternate;
+
+    @keyframes gradient-x {
+        0%, 100% {
+            background-size: 200% 200%;
+            background-position: left center;
+        }
+        50% {
+            background-size: 200% 200%;
+            background-position: right center;
+        }
+    }
+    @keyframes pulse-glow {
+        0% {
+            box-shadow: 0 0 5px rgba(56, 189, 248, 0.2), 0 0 10px rgba(56, 189, 248, 0.1);
+        }
+        100% {
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.5), 0 0 25px rgba(56, 189, 248, 0.3);
+        }
+    }
 }
 
 @layer components {
-    /* Custom components can go here */
+    .bg-gradient-animate {
+        background: linear-gradient(to right, #38bdf8, #818cf8, #a78bfa, #38bdf8);
+        background-size: 200% auto;
+        animation: var(--animate-gradient-x);
+    }
 }
 
 @media print {

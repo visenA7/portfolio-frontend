@@ -23,6 +23,7 @@ export interface Basics {
         portfolio: string;
     };
     summary: string;
+    notice_period?: string;
 }
 
 export interface Skills {

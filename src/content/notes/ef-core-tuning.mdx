@@ -1,0 +1,106 @@
+# EF Core Query & Performance Tuning
+
+## Introduction
+
+Entity Framework Core (EF Core) is a powerful, feature-rich Object-Relational Mapper (ORM) for .NET Core. However, because it abstracts database interaction, it is easy to write LINQ queries that generate inefficient SQL, causing high database CPU and latency spikes.
+
+This note outlines concrete optimization strategies for EF Core in high-traffic microservices.
+
+---
+
+## 1. Preventing N+1 Queries (Cartesian Explosions)
+
+The N+1 query issue occurs when EF Core sends one query to fetch parent records, followed by $N$ separate queries to fetch children for each parent.
+
+### The Pitfall (Lazy Loading)
+If Lazy Loading is enabled, accessing a navigation property in a loop generates a query for each iteration:
+```csharp
+// Generates 1 query for employees, then N queries for departments!
+var employees = await _context.Employees.ToListAsync();
+foreach (var emp in employees)
+{
+    var deptName = emp.Department.Name; 
+}
+```
+
+### The Solution: Eager Loading with Split Queries
+Eager loading solves this by using `.Include()` to fetch related data in a single SQL operation. However, joining multiple collection relationships can cause a **Cartesian Explosion**:
+```csharp
+// Eager Loading (Single Query join)
+var query = _context.Employees
+    .Include(e => e.Punches)
+    .Include(e => e.Benefits);
+```
+If an employee has 100 punches and 5 benefits, SQL returns $1 \times 100 \times 5 = 500$ rows containing duplicate employee columns.
+
+**Optimization: Split Queries**
+By using `.AsSplitQuery()`, EF Core will run separate queries for each collection relation, joining them in memory on the server:
+```csharp
+var query = await _context.Employees
+    .Include(e => e.Punches)
+    .Include(e => e.Benefits)
+    .AsSplitQuery()
+    .ToListAsync();
+```
+
+---
+
+## 2. No-Tracking Queries for Reads
+
+By default, EF Core tracks entities in the change tracker. If you modify property values, `SaveChanges()` writes them to the DB. This tracking consumes memory and CPU.
+
+### Optimization
+For read-only operations (e.g., populating a dashboard), disable tracking entirely to speed up query execution:
+```csharp
+var activeEmployees = await _context.Employees
+    .AsNoTracking()
+    .Where(e => e.IsActive)
+    .ToListAsync();
+```
+*Impact*: Bypasses the tracking state manager, resulting in **30-40% faster execution** and significantly lower GC overhead under heavy load.
+
+---
+
+## 3. DbContext Pooling for High Concurrency
+
+Instantiating a `DbContext` instance involves loading configuration models, mapping entities, and setting up dependency injection scopes. Doing this 10,000 times a second creates garbage collection bottlenecks.
+
+### Optimization: DbContext Pooling
+DbContext pooling allows reusing context instances across requests, similar to connection pooling:
+```csharp
+// Program.cs
+builder.Services.AddDbContextPool<HRMSDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+```
+*Impact*: Reduces CPU overhead during high-request scenarios by pooling context lifecycle blocks, maintaining high throughput on API gateways.
+
+---
+
+## 4. Query Compilation & Parameterization
+
+EF Core parses the LINQ tree and generates SQL, caching the compiled query. However, if queries are not parameterized correctly, the database compiles query execution plans repeatedly.
+
+### Constant Interpolation Pitfall
+```csharp
+// BAD: Dynamically compiles SQL for every different ID (ReDoS & SQL Injection risk)
+var emp = await _context.Employees
+    .FromSqlRaw($"SELECT * FROM Employees WHERE Id = '{id}'")
+    .FirstOrDefaultAsync();
+```
+
+### Paramterized Query
+```csharp
+// GOOD: Uses parameter binding, enabling SQL execution plan caching
+var emp = await _context.Employees
+    .FromSqlRaw("SELECT * FROM Employees WHERE Id = {0}", id)
+    .FirstOrDefaultAsync();
+```
+
+---
+
+## Summary Checklist for .NET Production
+
+1. Always use `.AsNoTracking()` for read-only API endpoints.
+2. Monitor Cartesian products and leverage `.AsSplitQuery()` where collections exceed typical thresholds.
+3. Configure `AddDbContextPool` for high-throughput microservices.
+4. Profile compiled SQL using DbContext Interceptors or tools like **dotnet-counters** and **SQL Profiler**.

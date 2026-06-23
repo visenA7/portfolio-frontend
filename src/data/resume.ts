@@ -3,106 +3,131 @@ import type { ResumeData } from "../types/resume";
 export const resumeData: ResumeData = {
     "basics": {
         "name": "Abhishek Visen",
-        "title": "Full Stack Developer",
+        "title": "Senior Full Stack Software Engineer",
         "location": {
             "city": "Delhi",
             "country": "India"
         },
         "contact": {
-            "phone": "09818158680",
+            "phone": "+91-9818158680",
             "email": "abhishekvisen7@gmail.com",
-            "linkedin": "www.linkedin.com/in/abhishek-visen",
-            "portfolio": "https://abhishekvisen.netlify.app/"
+            "linkedin": "linkedin.com/in/abhishek-visen",
+            "portfolio": "abhishekvisen.netlify.app"
         },
-        "summary": "Experienced Full Stack Developer with expertise in React, Node.js, PostgreSQL, Sequelize, Drizzle ORM, Redis, Socket.io, OAuth2/JWT, Azure, CI/CD. Proven track record in developing scalable enterprise applications, optimizing performance, and leading projects. Adept at team collaboration, project management, and troubleshooting."
+        "summary": "Experienced in React, Node.js, ASP.NET Core, PostgreSQL, Azure, and microservices, building enterprise web platforms used by 10,000+ users and reducing employee onboarding time by three days.",
+        "notice_period": "Immediate Joiner"
     },
     "skills": {
         "frontend": [
             "React.js",
+            "Zustand",
+            "React Query",
             "Redux",
             "Tailwind CSS",
+            "HTML5",
+            "CSS3",
             "Leaflet",
+            "CesiumJS",
+            "jQuery",
             "TypeScript",
-            "CesiumJS"
+            "JavaScript"
         ],
         "backend": [
             "Node.js",
+            "Express.js",
+            "ASP.NET Core",
             "PostgreSQL",
+            "Bull MQ",
+            "Sequelize ORM",
+            "EF Core",
+            "Socket.io",
             "PostGIS",
-            "Redis",
-            "Sequelize",
-            "Drizzle ORM",
-            "Socket.io"
+            "Redis Pub/Sub"
         ],
         "testing_and_optimization": [
             "Jest",
+            "React Profiler",
             "Web Vitals",
+            "Database Optimization",
+            "Caching",
             "Performance Optimization"
         ],
         "tools_and_platforms": [
-            "Git",
             "Docker",
-            "OAuth2/JWT",
             "Azure",
-            "CI/CD"
+            "GitHub Actions",
+            "CI/CD",
+            "Git",
+            "Linux Server",
+            "Microsoft Server",
+            "OAuth2/JWT",
+            "Keycloak",
+            "Postman",
+            "Bruno",
+            "OpenAI",
+            "ChatGPT",
+            "Claude Code",
+            "Bolt.AI",
+            "Cursor",
+            "LM Studio",
+            "Ollama"
         ]
     },
     "experience": [
         {
-            "role": "Sr. Full Stack Software Developer",
-            "company": "Futurionic Private Limited",
-            "location": "Gurugram, India",
-            "start_date": "April 2024",
-            "end_date": "Present",
-            "responsibilities": [
-                "Led a team of developers to build scalable enterprise applications using React, Node.js, and PostgreSQL",
-                "Designed and optimized high-performance APIs for efficiency and scalability",
-                "Integrated third-party services and automated workflows",
-                "Provided technical mentorship and conducted code reviews"
-            ]
-        },
-        {
-            "role": "Software Developer",
+            "role": "Senior Full Stack Software Engineer",
             "company": "Futurionic Private Limited",
             "location": "Gurugram, India",
             "start_date": "April 2022",
-            "end_date": "March 2024",
+            "end_date": "Present",
             "responsibilities": [
-                "Developed and maintained HR Cosmo HRMS with attendance, employee, vendor, leave, and shift modules",
-                "Collaborated with UX designers and backend engineers to improve application performance",
-                "Optimized database queries reducing load times by 30%",
-                "Resolved critical bugs ensuring stable deployments"
+                "Architected enterprise web applications using React.js, Node.js, and ASP.NET Core, Microservices, implementing OAuth2, JWT, and RBAC across 5 user tiers supporting 10,000+ employees.",
+                "Engineered and optimized REST APIs, Azure PostgreSQL, NoSQL Database and Redis-backed services supporting 500K+ daily requests, reducing CPU utilization from 90% to below 40% and enabling real-time communication through Socket.io.",
+                "Improved system performance by restructuring data payloads, reducing application load times by 30%, resolving 150+ critical production issues, and integrating biometric APIs and GPS tracking with 98% spatial accuracy.",
+                "Automated 25+ report generation using Python and SQL, reducing manual reporting time by 60%.",
+                "Built CI/CD pipeline from scratch using GitHub Actions, reducing deployment failures by 30% and deployment time by 50% through automated testing and staging validation.",
+                "Mentored 8 junior developers through code reviews and pair programming, accelerating onboarding productivity by 40%."
+            ]
+        },
+        {
+            "role": "IT Executive",
+            "company": "ABStechservices",
+            "location": "Noida, India",
+            "start_date": "December 2018",
+            "end_date": "January 2020",
+            "responsibilities": [
+                "Maintained and enhanced web applications built using JavaScript, HTML, CSS, and jQuery.",
+                "Resolved frontend bugs and improved application usability across browsers.",
+                "Implemented database-driven file management workflows for storing and retrieving Excel and CSV files using SQL databases."
             ]
         }
     ],
     "projects": [
         {
-            "name": "Enterprise HRMS Platform (HR Cosmo)",
+            "name": "Enterprise HRMS Platform",
             "duration": "April 2022 - Present",
             "description": [
-                "Architected a comprehensive workforce management platform replacing legacy software for enterprise clients.",
-                "Designed extensive Payroll Engine supporting custom tax components, deductions, and statutory compliance.",
-                "Integrated Biometric & Mobile GPS attendance systems with real-time sync and geo-fencing.",
-                "Implemented Role-Based Access Control (RBAC) using OAuth2 and JWT for secure field/office access.",
-                "Optimized backend performance using a hybrid Sequelize/Drizzle ORM strategy for high-read dashboards."
+                "Pioneered a multi-tenant HRMS platform managing the workforce lifecycle of 15,000+ employees.",
+                "Automated payroll processing for 15,000+ employees, reducing payroll execution effort from multiple days to a few hours while ensuring full tax compliance.",
+                "Incorporated live GPS and biometric sync, eliminating time-theft and saving clients 12% in administrative costs."
             ]
         },
         {
-            "name": "GIS Software for DBVHNL",
-            "duration": "1 Year",
-            "description": [
-                "Developed a geospatial asset management system to map electrical infrastructure.",
-                "Implemented interactive map layers using Leaflet and PostGIS for spatial queries.",
-                "Enabled offline data collection for field engineers with auto-sync capabilities."
-            ]
-        },
-        {
-            "name": "Real-Time Chat Application",
+            "name": "AI Real-Time Chat Application",
             "duration": "Side Project -> Production",
             "description": [
-                "Engineered a high-performance messaging engine using WebSockets (Socket.io) and Redis Pub/Sub.",
-                "Integrated into the main HRMS to facilitate secure internal communication.",
-                "Ensured message durability and history using PostgreSQL JSONB storage."
+                "Engineered a WebSocket messaging system using React js and Node js, supporting 5,000+ concurrent connections with sub-50ms latency.",
+                "Implemented Redis Pub/Sub architecture enabling horizontal scaling across multiple application instances while maintaining sub-50ms message delivery latency.",
+                "Designed PostgreSQL JSONB storage structures, archiving 2M+ messages per month while maintaining fast search performance."
+            ]
+        },
+        {
+            "name": "GIS Twin City Management System",
+            "duration": "1 Year",
+            "description": [
+                "Developed a Digital Twin platform visualizing 500,000+ utility assets and supporting real-time monitoring for DBVHNL teams.",
+                "Executed spatial queries via PostGIS, accelerating asset retrieval by 40% across 500,000+ geographical nodes.",
+                "Designed an offline-first synchronization protocol, enabling 200+ field technicians to log data without network coverage."
             ]
         }
     ],
@@ -112,23 +137,19 @@ export const resumeData: ResumeData = {
             "field": "Computer Science Engineering",
             "institution": "Greater Noida Institute of Technology",
             "duration": "2014 - 2018"
-        },
-        {
-            "degree": "Higher and Senior Secondary Education",
-            "institution": "Jain Senior Secondary School",
-            "duration": "2009 - 2013"
         }
     ],
     "achievements": [
-        "6 Times Employee of the Month at Futurionic Pvt Ltd for outstanding contributions"
+        "Expedited the delivery of four major infrastructure components by an average of 90 days each, contributing to six 'Employee of the Month' recognitions.",
+        "Initiated and developed an AI-powered HRMS assistant for employees and HR teams, enabling instant access to policies, attendance, leave, and platform guidance."
     ],
     "languages": [
         {
-            "language": "Hindi",
+            "language": "English",
             "proficiency": "Full Professional Proficiency"
         },
         {
-            "language": "English",
+            "language": "Hindi",
             "proficiency": "Full Professional Proficiency"
         }
     ],

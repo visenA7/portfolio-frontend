@@ -3,122 +3,129 @@ import { Container } from "../components/layout/Container";
 const projects = [
     {
         title: "Enterprise HRMS Platform",
-        role: "Lead Fullstack Engineer",
-        timeline: "3 Years (Ongoing)",
-        description: "A comprehensive workforce management platform handling payroll, attendance, and compliance for enterprise clients. Built to replace legacy desktop software with a cloud-native solution.",
-        tech: ["Node.js", "PostgreSQL", "React", "Redis", "Sequelize/Drizzle", "Leaflet"],
+        role: "Senior Full Stack Engineer",
+        timeline: "April 2022 - Present",
+        description: "Pioneered a multi-tenant HRMS platform managing the workforce lifecycle of 15,000+ employees. Built to replace legacy desktop software with a secure, highly scalable cloud solution.",
+        tech: ["React.js", "Node.js", "ASP.NET Core", "Microservices", "Python", "PostgreSQL", "Redis", "Sequelize/Drizzle", "JWT/OAuth2"],
         features: [
-            "Extensive Payroll Engine (Tax, Deductions, Custom Components)",
-            "Biometric & Mobile GPS Attendance Sync",
-            "Modules: Holiday, Leave, Location, Vendor, Compliance",
-            "Role-Based Access Control (OAuth2 + JWT)",
+            "Pioneered workforce lifecycle modules for 15,000+ employees",
+            "Automated payroll, reducing execution effort from days to hours with full tax compliance",
+            "Incorporated live GPS & biometric sync, saving clients 12% in administrative costs",
+            "Designed a hybrid Sequelize/Drizzle ORM strategy for high-read dashboards",
         ],
         link: "/systems/hrms",
         linkText: "View System Architecture →"
     },
     {
-        title: "GIS Software for DBVHNL",
-        role: "Fullstack Developer",
-        timeline: "1 Year",
-        description: "A geospatial information system designed for DBVHNL to map and manage electrical infrastructure assets. Enabled engineers to visualize network data overlaid on geographical maps.",
-        tech: ["React", "CesiumJS", "Node.js", "PostgreSQL", "GeoJSON", "Redis", "Sequelize/Drizzle", "Socket.io", "PostGIS"],
-        features: [
-            "Asset mapping on interactive layers",
-            "Spatial queries for infrastructure planning",
-            "Offline data collection mode for field engineers",
-            "Real-time status updates"
-        ],
-        link: "#",
-        linkText: "Internal Tool"
-    },
-    {
-        title: "Real-Time Chat Application",
+        title: "AI Real-Time Chat Application",
         role: "Fullstack Developer",
         timeline: "Side Project -> Production",
-        description: "Initially built as a side project to explore WebSockets, later engineered into the HRMS to facilitate secure internal communication between managers and employees.",
-        tech: ["Socket.io", "Redis Pub/Sub", "React", "Node.js", "React Native"],
+        description: "Engineered a WebSocket messaging and AI assistant system, integrated directly into the main HRMS to facilitate internal communications and policy queries.",
+        tech: ["React.js", "Node.js", "Socket.io", "Redis Pub/Sub", "PostgreSQL", "OpenAI", "LangChain", "React Native"],
         features: [
-            "1-to-1 and Group Messaging",
-            "Delivery Guarantees (Sent, Delivered, Read)",
-            "Optimistic UI updates",
-            "Message persistence in PostgreSQL"
+            "Supports 5,000+ concurrent connections with sub-50ms latency",
+            "Redis Pub/Sub architecture for horizontal scaling across instances",
+            "PostgreSQL JSONB structures archiving 2M+ messages/month with fast search",
+            "AI-powered HRMS assistant for instant access to company policies and attendance guidance"
         ],
         link: "/systems/chat",
         linkText: "View Scalability Study →"
+    },
+    {
+        title: "GIS Twin City Management System",
+        role: "Fullstack Developer",
+        timeline: "1 Year",
+        description: "A geospatial information system / digital twin designed for DBVHNL to map and manage electrical infrastructure assets overlaid on interactive geographical maps.",
+        tech: ["Leaflet", "CesiumJS", "PostGIS", "PostgreSQL", "Node.js", "Redis", "Sequelize/Drizzle", "Socket.io"],
+        features: [
+            "Visualized 500,000+ utility assets supporting real-time monitoring",
+            "PostGIS spatial queries accelerating asset retrieval by 40% over 500K nodes",
+            "Offline-first synchronization protocol for 200+ field technicians"
+        ],
+        link: "#",
+        linkText: "Internal System"
     }
 ];
 
 export const Projects = () => {
     return (
-        <section className="py-12 md:py-24">
+        <section className="py-12 md:py-24 relative overflow-hidden transition-colors duration-300">
+            {/* Background gradients */}
+            <div className="absolute top-10 left-10 w-96 h-96 bg-sky-500/5 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl pointer-events-none" />
+
             <Container>
-                <div className="mb-8 md:mb-14">
-                    <h1 className="text-3xl md:text-4xl font-bold text-white mb-3 md:mb-4">
-                        Featured Projects
+                <div className="mb-12 md:mb-20">
+                    <span className="text-sky-600 dark:text-sky-400 font-mono text-sm tracking-wider uppercase font-semibold">Portfolio</span>
+                    <h1 className="text-4xl md:text-5xl font-extrabold text-text-heading mt-2 mb-4 tracking-tight">
+                        Featured Systems
                     </h1>
-                    <p className="text-gray-400 max-w-2xl text-base md:text-lg">
-                        Selected works demonstrating large-scale system ownership,
-                        specialized domain knowledge, and fullstack capabilities.
+                    <p className="text-text-muted max-w-2xl text-base md:text-lg leading-relaxed font-medium">
+                        Production-grade systems demonstrating end-to-end ownership, complex system design, 
+                        and performance optimizations supporting large user bases.
                     </p>
                 </div>
 
-                <div className="space-y-8 md:space-y-12">
+                <div className="space-y-8 md:space-y-16">
                     {projects.map((project) => (
                         <div
                             key={project.title}
-                            className="bg-[#0B0F14] border border-white/10 rounded-2xl p-5 md:p-8 hover:border-sky-500/30 transition-colors"
+                            className="bg-card border border-card-border rounded-3xl p-6 md:p-10 hover:border-sky-500/30 hover:bg-card-hover transition-all duration-300 shadow-sm hover:shadow-md relative group"
                         >
-                            <div className="flex flex-col gap-6 md:flex-row md:gap-8 justify-between items-start">
+                            {/* Card Glow */}
+                            <div className="absolute -inset-px bg-gradient-to-r from-sky-500/5 to-purple-500/5 rounded-3xl opacity-0 group-hover:opacity-100 transition duration-700 pointer-events-none" />
+                            
+                            <div className="flex flex-col gap-6 lg:flex-row lg:gap-10 justify-between items-start relative z-10">
                                 <div className="flex-1">
-                                    <div className="flex flex-wrap items-center gap-2 md:gap-3 mb-3">
-                                        <h2 className="text-xl md:text-2xl font-bold text-white">
+                                    <div className="flex flex-wrap items-center gap-3 mb-4">
+                                        <h2 className="text-2xl md:text-3xl font-extrabold text-text-heading tracking-tight animate-fade-in">
                                             {project.title}
                                         </h2>
-                                        <span className="px-2 md:px-3 py-1 bg-white/5 rounded-full text-xs font-mono text-sky-400 border border-white/10">
+                                        <span className="px-3 py-1 bg-badge text-badge-text rounded-full text-xs font-mono border border-badge-border">
                                             {project.role}
                                         </span>
                                     </div>
 
-                                    <p className="text-gray-400 mb-4 md:mb-6 leading-relaxed text-sm md:text-base">
+                                    <p className="text-text-muted mb-6 leading-relaxed text-sm md:text-base font-medium">
                                         {project.description}
                                     </p>
 
-                                    <div className="mb-4 md:mb-6">
-                                        <h3 className="text-sm font-bold text-gray-200 mb-2 md:mb-3 uppercase tracking-wider">
-                                            Key Features
+                                    <div className="mb-6">
+                                        <h3 className="text-xs font-extrabold text-sky-600 dark:text-sky-400 mb-3 uppercase tracking-widest font-mono">
+                                            Key Features & Impact
                                         </h3>
-                                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                             {project.features.map(f => (
-                                                <li key={f} className="flex items-start text-sm text-gray-400">
+                                                <li key={f} className="flex items-start text-sm text-text-muted">
                                                     <span className="mr-2 text-sky-500 flex-shrink-0">▹</span>
-                                                    {f}
+                                                    <span>{f}</span>
                                                 </li>
                                             ))}
                                         </ul>
                                     </div>
 
-                                    <div className="flex flex-wrap gap-2">
+                                    <div className="flex flex-wrap gap-2 pt-2">
                                         {project.tech.map(t => (
-                                            <span key={t} className="px-2 md:px-3 py-1 bg-black rounded text-xs text-gray-500 border border-white/5">
+                                            <span key={t} className="px-2.5 py-1 bg-background text-text-muted rounded-lg text-xs font-mono border border-border-custom transition-colors duration-300">
                                                 {t}
                                             </span>
                                         ))}
                                     </div>
                                 </div>
 
-                                <div className="flex flex-row md:flex-col items-center md:items-end gap-4 md:text-right md:min-w-[200px] w-full md:w-auto">
-                                    <span className="text-sm font-mono text-gray-500">
+                                <div className="flex flex-row lg:flex-col items-center lg:items-end justify-between lg:justify-start gap-4 lg:text-right lg:min-w-[220px] w-full lg:w-auto border-t lg:border-t-0 border-border-custom pt-4 lg:pt-0">
+                                    <div className="text-sm font-mono text-text-muted opacity-80">
                                         {project.timeline}
-                                    </span>
+                                    </div>
                                     {project.link !== "#" ? (
                                         <a
                                             href={project.link}
-                                            className="text-sky-400 hover:text-sky-300 font-bold text-sm inline-flex items-center gap-1 group py-2 min-h-[44px]"
+                                            className="px-4 py-2 bg-sky-600 hover:bg-sky-500 text-white rounded-lg font-bold text-sm transition-all shadow-lg hover:shadow-sky-500/20 cursor-pointer"
                                         >
                                             {project.linkText}
                                         </a>
                                     ) : (
-                                        <span className="text-gray-600 text-sm cursor-not-allowed py-2">
+                                        <span className="px-4 py-2 bg-background text-text-muted rounded-lg font-mono text-xs border border-border-custom">
                                             {project.linkText}
                                         </span>
                                     )}
