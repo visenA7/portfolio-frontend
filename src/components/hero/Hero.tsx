@@ -35,13 +35,13 @@ export const Hero = () => {
                             <p className="text-xs sm:text-sm font-mono font-semibold uppercase tracking-widest text-accent mb-2">
                                 System Architect & Full Stack Engineer
                             </p>
-                            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-text-heading tracking-tight leading-[1.08]">
+                            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-text-heading tracking-tight leading-[1.12]">
                                 Hi, I'm{" "}
                                 <span className="text-text-heading underline decoration-accent/60 decoration-2 underline-offset-8">
                                     {basics.name}
                                 </span>
                             </h1>
-                            <p className="mt-3 text-lg sm:text-xl font-bold text-text-heading/90">
+                            <p className="mt-4 sm:mt-5 text-lg sm:text-xl font-bold text-text-heading/90 leading-snug">
                                 {basics.title}
                             </p>
                         </div>
