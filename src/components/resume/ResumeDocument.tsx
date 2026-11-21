@@ -1,107 +1,113 @@
 import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
 import type { ResumeData } from '../../types/resume';
 
-// Register a standard font (optional, using Helium/Helvetica by default is fine for a clean look)
-// Helvetica is a standard font and doesn't need to be registered
-// Font.register({ ... });
-
 // Create styles
 const styles = StyleSheet.create({
   page: {
     flexDirection: 'column',
     backgroundColor: '#FFFFFF',
-    padding: 30, // 30pt padding ~ 1cm
+    padding: 26,
     fontFamily: 'Helvetica',
-  },
-  section: {
-    marginBottom: 10,
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: '#E5E7EB', // Gray-200
-    paddingBottom: 10,
+    marginBottom: 12,
+    borderBottomWidth: 1.5,
+    borderBottomColor: '#E7DECF',
+    paddingBottom: 8,
   },
   headerLeft: {
     flexDirection: 'column',
-    maxWidth: '60%',
+    maxWidth: '62%',
   },
   headerRight: {
     flexDirection: 'column',
     alignItems: 'flex-end',
     justifyContent: 'flex-start',
+    maxWidth: '36%',
   },
   name: {
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: 'bold',
     textTransform: 'uppercase',
-    color: '#000000',
+    color: '#29261F',
+    letterSpacing: 0.5,
   },
   title: {
-    fontSize: 14,
-    color: '#0369A1', // Sky-700
+    fontSize: 10,
+    color: '#A77C42',
+    marginTop: 2,
     marginBottom: 4,
-    fontWeight: 'medium',
+    fontWeight: 'bold',
   },
   summary: {
-    fontSize: 9,
-    color: '#374151', // Gray-700
-    lineHeight: 1.4,
-    marginTop: 4,
+    fontSize: 8,
+    color: '#4A453C',
+    lineHeight: 1.35,
+    marginTop: 2,
   },
   contactItem: {
-    fontSize: 9,
-    color: '#4B5563', // Gray-600
+    fontSize: 8,
+    color: '#5A544A',
     marginBottom: 2,
-    flexDirection: 'row',
-    alignItems: 'center',
   },
   contactLink: {
-    fontSize: 9,
+    fontSize: 8,
     fontWeight: 'bold',
-    flexDirection: 'row',
-    alignItems: 'center',
-    color: '#0369A1', // Sky-700
+    color: '#A77C42',
     textDecorationLine: 'underline',
+    marginBottom: 2,
+  },
+  badge: {
+    fontSize: 7.5,
+    backgroundColor: '#F0E9DC',
+    color: '#29261F',
+    paddingHorizontal: 4,
+    paddingVertical: 1.5,
+    borderRadius: 2,
+    marginTop: 2,
+    fontWeight: 'bold',
   },
   columns: {
     flexDirection: 'row',
-    gap: 15, // Gap between columns
+    gap: 12,
   },
   leftColumn: {
-    width: '68%',
+    width: '66%',
     flexDirection: 'column',
   },
   rightColumn: {
-    width: '32%',
+    width: '34%',
     flexDirection: 'column',
   },
+  section: {
+    marginBottom: 8,
+  },
   sectionTitle: {
-    fontSize: 11,
+    fontSize: 9.5,
     fontWeight: 'bold',
     textTransform: 'uppercase',
-    color: '#000000',
+    color: '#29261F',
     borderBottomWidth: 1,
-    borderBottomColor: '#E5E7EB',
-    marginBottom: 8,
+    borderBottomColor: '#E7DECF',
+    marginBottom: 5,
     paddingBottom: 2,
-    letterSpacing: 1,
+    letterSpacing: 0.8,
   },
   jobEntry: {
-    marginBottom: 8,
+    marginBottom: 6,
   },
   jobHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 2,
     alignItems: 'flex-end',
+    marginBottom: 1,
   },
   role: {
-    fontSize: 10,
+    fontSize: 8.5,
     fontWeight: 'bold',
-    color: '#000000',
+    color: '#29261F',
   },
   companyLine: {
     flexDirection: 'row',
@@ -109,74 +115,80 @@ const styles = StyleSheet.create({
     marginBottom: 2,
   },
   company: {
-    fontSize: 9,
-    fontWeight: 'bold', // Semibold
-    color: '#0369A1', // Sky-700
+    fontSize: 8,
+    fontWeight: 'bold',
+    color: '#A77C42',
   },
   location: {
-    fontSize: 9,
-    color: '#6B7280', // Gray-500
-    marginLeft: 4,
+    fontSize: 7.5,
+    color: '#777064',
+    marginLeft: 3,
   },
   date: {
-    fontSize: 8,
-    color: '#6B7280', // Gray-500
+    fontSize: 7.5,
+    color: '#777064',
+  },
+  techStack: {
+    fontSize: 7.5,
+    color: '#A77C42',
+    fontFamily: 'Helvetica-Oblique',
+    marginBottom: 2,
   },
   bulletList: {
-    marginLeft: 10,
+    marginLeft: 6,
   },
   bulletPoint: {
-    fontSize: 9,
-    color: '#374151', // Gray-700
+    fontSize: 7.5,
+    color: '#3F3B33',
     lineHeight: 1.3,
     marginBottom: 1,
   },
   skillCategory: {
-    marginBottom: 8,
+    marginBottom: 5,
   },
   skillTitle: {
-    fontSize: 9,
+    fontSize: 8,
     fontWeight: 'bold',
-    color: '#0369A1', // Sky-700
-    marginBottom: 2,
+    color: '#A77C42',
+    marginBottom: 1.5,
   },
   skillTags: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 4,
+    gap: 2.5,
   },
   skillTag: {
-    fontSize: 8,
-    backgroundColor: '#F3F4F6', // Gray-100
-    paddingHorizontal: 4,
+    fontSize: 7,
+    backgroundColor: '#F0E9DC',
+    paddingHorizontal: 3.5,
     paddingVertical: 1,
     borderRadius: 2,
-    color: '#1F2937', // Gray-800
+    color: '#29261F',
   },
   educationEntry: {
-    marginBottom: 6,
+    marginBottom: 4,
   },
   degree: {
-    fontSize: 9,
+    fontSize: 8,
     fontWeight: 'bold',
-    color: '#000000',
+    color: '#29261F',
   },
   institution: {
-    fontSize: 9,
-    color: '#0369A1', // Sky-700
+    fontSize: 7.5,
+    color: '#A77C42',
   },
   achievement: {
-    fontSize: 8,
-    color: '#374151',
-    marginBottom: 2,
-    lineHeight: 1.2,
+    fontSize: 7.5,
+    color: '#3F3B33',
+    marginBottom: 3,
+    lineHeight: 1.25,
   },
   languageRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: 2,
     borderBottomWidth: 0.5,
-    borderBottomColor: '#F3F4F6',
+    borderBottomColor: '#F0E9DC',
     paddingBottom: 1,
   },
 });
@@ -202,7 +214,9 @@ export const ResumeDocument = ({ data }: ResumeDocumentProps) => (
           <Text style={styles.contactItem}>{data.basics.contact.phone}</Text>
           <Text style={styles.contactLink}>{data.basics.contact.linkedin}</Text>
           <Text style={styles.contactLink}>{data.basics.contact.portfolio}</Text>
-          {/* Add links if needed */}
+          {data.basics.notice_period && (
+            <Text style={styles.badge}>{data.basics.notice_period}</Text>
+          )}
         </View>
       </View>
 
@@ -211,14 +225,14 @@ export const ResumeDocument = ({ data }: ResumeDocumentProps) => (
         {/* Main Column */}
         <View style={styles.leftColumn}>
 
-          {/* Experience */}
+          {/* Professional Experience */}
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Experience</Text>
+            <Text style={styles.sectionTitle}>Professional Experience</Text>
             {data.experience.map((job, idx) => (
-              <View key={idx} style={styles.jobEntry}>
+              <View key={idx} style={styles.jobEntry} wrap={false}>
                 <View style={styles.jobHeader}>
                   <Text style={styles.role}>{job.role}</Text>
-                  <Text style={styles.date}>{job.start_date} - {job.end_date}</Text>
+                  <Text style={styles.date}>{job.start_date} – {job.end_date}</Text>
                 </View>
                 <View style={styles.companyLine}>
                   <Text style={styles.company}>{job.company}</Text>
@@ -233,15 +247,18 @@ export const ResumeDocument = ({ data }: ResumeDocumentProps) => (
             ))}
           </View>
 
-          {/* Projects */}
+          {/* Key Projects */}
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Key Projects</Text>
             {data.projects.map((proj, idx) => (
-              <View key={idx} style={styles.jobEntry}>
+              <View key={idx} style={styles.jobEntry} wrap={false}>
                 <View style={styles.jobHeader}>
                   <Text style={styles.role}>{proj.name}</Text>
-                  <Text style={styles.date}>{proj.duration}</Text>
+                  {proj.duration && <Text style={styles.date}>{proj.duration}</Text>}
                 </View>
+                {proj.technologies && (
+                  <Text style={styles.techStack}>{proj.technologies}</Text>
+                )}
                 <View style={styles.bulletList}>
                   {proj.description.map((desc, dIdx) => (
                     <Text key={dIdx} style={styles.bulletPoint}>• {desc}</Text>
@@ -255,14 +272,14 @@ export const ResumeDocument = ({ data }: ResumeDocumentProps) => (
         {/* Sidebar Column */}
         <View style={styles.rightColumn}>
 
-          {/* Skills */}
+          {/* Technical Skills */}
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Skills</Text>
+            <Text style={styles.sectionTitle}>Technical Skills</Text>
 
             <View style={styles.skillCategory}>
-              <Text style={styles.skillTitle}>Frontend</Text>
+              <Text style={styles.skillTitle}>AI / GenAI</Text>
               <View style={styles.skillTags}>
-                {data.skills.frontend.map(s => (
+                {data.skills.ai_genai.map(s => (
                   <Text key={s} style={styles.skillTag}>{s}</Text>
                 ))}
               </View>
@@ -278,9 +295,54 @@ export const ResumeDocument = ({ data }: ResumeDocumentProps) => (
             </View>
 
             <View style={styles.skillCategory}>
+              <Text style={styles.skillTitle}>Frontend</Text>
+              <View style={styles.skillTags}>
+                {data.skills.frontend.map(s => (
+                  <Text key={s} style={styles.skillTag}>{s}</Text>
+                ))}
+              </View>
+            </View>
+
+            <View style={styles.skillCategory}>
+              <Text style={styles.skillTitle}>Databases & Messaging</Text>
+              <View style={styles.skillTags}>
+                {data.skills.databases_and_messaging.map(s => (
+                  <Text key={s} style={styles.skillTag}>{s}</Text>
+                ))}
+              </View>
+            </View>
+
+            <View style={styles.skillCategory}>
+              <Text style={styles.skillTitle}>Architecture & Security</Text>
+              <View style={styles.skillTags}>
+                {data.skills.architecture_and_security.map(s => (
+                  <Text key={s} style={styles.skillTag}>{s}</Text>
+                ))}
+              </View>
+            </View>
+
+            <View style={styles.skillCategory}>
+              <Text style={styles.skillTitle}>Cloud & DevOps</Text>
+              <View style={styles.skillTags}>
+                {data.skills.cloud_and_devops.map(s => (
+                  <Text key={s} style={styles.skillTag}>{s}</Text>
+                ))}
+              </View>
+            </View>
+
+            <View style={styles.skillCategory}>
+              <Text style={styles.skillTitle}>Programming</Text>
+              <View style={styles.skillTags}>
+                {data.skills.programming.map(s => (
+                  <Text key={s} style={styles.skillTag}>{s}</Text>
+                ))}
+              </View>
+            </View>
+
+            <View style={styles.skillCategory}>
               <Text style={styles.skillTitle}>Tools & Testing</Text>
               <View style={styles.skillTags}>
-                {[...data.skills.testing_and_optimization, ...data.skills.tools_and_platforms].map(s => (
+                {data.skills.tools.map(s => (
                   <Text key={s} style={styles.skillTag}>{s}</Text>
                 ))}
               </View>
@@ -293,7 +355,7 @@ export const ResumeDocument = ({ data }: ResumeDocumentProps) => (
             {data.education.map((edu, idx) => (
               <View key={idx} style={styles.educationEntry}>
                 <Text style={styles.degree}>{edu.degree}</Text>
-                {edu.field && <Text style={{ fontSize: 8, color: '#374151', marginBottom: 1 }}>{edu.field}</Text>}
+                {edu.field && <Text style={{ fontSize: 7.5, color: '#4A453C', marginBottom: 1 }}>{edu.field}</Text>}
                 <Text style={styles.institution}>{edu.institution}</Text>
                 <Text style={styles.date}>{edu.duration}</Text>
               </View>
@@ -302,7 +364,7 @@ export const ResumeDocument = ({ data }: ResumeDocumentProps) => (
 
           {/* Achievements */}
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Achievements</Text>
+            <Text style={styles.sectionTitle}>Key Achievements</Text>
             {data.achievements.map((ach, idx) => (
               <Text key={idx} style={styles.achievement}>• {ach}</Text>
             ))}
@@ -313,8 +375,8 @@ export const ResumeDocument = ({ data }: ResumeDocumentProps) => (
             <Text style={styles.sectionTitle}>Languages</Text>
             {data.languages.map((lang, idx) => (
               <View key={idx} style={styles.languageRow}>
-                <Text style={{ fontSize: 9, fontWeight: 'bold' }}>{lang.language}</Text>
-                <Text style={{ fontSize: 8, color: '#6B7280' }}>{lang.proficiency}</Text>
+                <Text style={{ fontSize: 8, fontWeight: 'bold', color: '#29261F' }}>{lang.language}</Text>
+                <Text style={{ fontSize: 7.5, color: '#777064' }}>{lang.proficiency}</Text>
               </View>
             ))}
           </View>

@@ -48,12 +48,12 @@ export const Hero = () => {
 
                         {/* Concise Value Proposition */}
                         <p className="text-text-muted text-base sm:text-lg leading-relaxed max-w-2xl font-normal">
-                            Architecting resilient enterprise AI platforms, event-driven microservices, and distributed data systems using{" "}
-                            <strong className="text-text-heading font-semibold">.NET 10, React, Node.js</strong>, and{" "}
-                            <strong className="text-text-heading font-semibold">Apache Kafka</strong>. Architected{" "}
-                            <strong className="text-accent font-semibold">PropEquityAI</strong> (governed NL-to-SQL via MCP & hybrid vector search) and platforms handling{" "}
-                            <span className="font-semibold font-mono text-text-heading">500K+ daily requests</span> with{" "}
-                            <span className="text-accent font-semibold font-mono">sub-50ms latency</span>.
+                            Senior Full Stack Software Engineer with{" "}
+                            <strong className="text-text-heading font-semibold">6+ years of experience</strong> building scalable enterprise applications using{" "}
+                            <strong className="text-text-heading font-semibold">ASP.NET Core, React, Node.js</strong>, and{" "}
+                            <strong className="text-accent font-semibold">AI/GenAI solutions (RAG, LLMs, MCP)</strong>. Experienced in distributed architectures supporting{" "}
+                            <span className="font-semibold font-mono text-text-heading">10,000+ users</span> and{" "}
+                            <span className="text-accent font-semibold font-mono">500K+ daily requests</span>.
                         </p>
 
                         {/* Primary CTAs - Bespoke Accent & Surface Actions */}

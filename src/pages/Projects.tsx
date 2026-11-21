@@ -50,7 +50,7 @@ const projects = [
         id: "hrms",
         title: "Enterprise HRMS Platform",
         role: "Senior Full Stack Engineer",
-        timeline: "April 2022 - Present",
+        timeline: "April 2022 – July 2026",
         icon: ServerStackIcon,
         description: "Pioneered a multi-tenant HRMS platform managing the workforce lifecycle of 15,000+ employees. Built to replace legacy desktop software with a secure, highly scalable cloud solution.",
         tech: ["React.js", "Node.js", "ASP.NET Core", "Microservices", "Python", "PostgreSQL", "Redis", "Sequelize/Drizzle", "JWT/OAuth2"],

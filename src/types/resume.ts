@@ -6,7 +6,7 @@ export interface ResumeData {
     education: Education[];
     achievements: string[];
     languages: Language[];
-    interests: string[];
+    interests?: string[];
 }
 
 export interface Basics {
@@ -27,10 +27,14 @@ export interface Basics {
 }
 
 export interface Skills {
+    programming: string[];
     frontend: string[];
     backend: string[];
-    testing_and_optimization: string[];
-    tools_and_platforms: string[];
+    databases_and_messaging: string[];
+    architecture_and_security: string[];
+    cloud_and_devops: string[];
+    ai_genai: string[];
+    tools: string[];
 }
 
 export interface Experience {
@@ -44,7 +48,8 @@ export interface Experience {
 
 export interface Project {
     name: string;
-    duration: string;
+    technologies?: string;
+    duration?: string;
     description: string[];
 }
 

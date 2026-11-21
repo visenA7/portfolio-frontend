@@ -1,11 +1,22 @@
 import { Container } from "../components/layout/Container";
 import { resumeData } from "../data/resume";
-import { EnvelopeIcon, PhoneIcon, MapPinIcon, ArrowDownTrayIcon, StarIcon, CheckCircleIcon } from "@heroicons/react/24/outline";
+import { EnvelopeIcon, PhoneIcon, MapPinIcon, ArrowDownTrayIcon, StarIcon, CheckCircleIcon, SparklesIcon } from "@heroicons/react/24/outline";
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import { ResumeDocument } from "../components/resume/ResumeDocument";
 
 export const Resume = () => {
     const { basics, skills, experience, projects, education, achievements, languages } = resumeData;
+
+    const skillClusters = [
+        { title: "AI & GenAI", items: skills.ai_genai, highlight: true },
+        { title: "Backend Engineering", items: skills.backend, highlight: true },
+        { title: "Frontend Architecture", items: skills.frontend, highlight: false },
+        { title: "Databases & Messaging", items: skills.databases_and_messaging, highlight: false },
+        { title: "Architecture & Security", items: skills.architecture_and_security, highlight: false },
+        { title: "Cloud & DevOps", items: skills.cloud_and_devops, highlight: false },
+        { title: "Programming Languages", items: skills.programming, highlight: false },
+        { title: "Tools & Optimization", items: skills.tools, highlight: false },
+    ];
 
     return (
         <section className="py-10 md:py-16 print:py-0 transition-colors duration-200">
@@ -51,7 +62,7 @@ export const Resume = () => {
                                 <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-text-heading print:text-black">
                                     {basics.name}
                                 </h1>
-                                <p className="text-lg md:text-xl text-accent font-bold mt-2">
+                                <p className="text-base sm:text-lg md:text-xl text-accent font-bold mt-2">
                                     {basics.title}
                                 </p>
                             </div>
@@ -100,7 +111,7 @@ export const Resume = () => {
                             {/* Experience Section */}
                             <section>
                                 <h2 className="text-base md:text-lg font-bold uppercase tracking-wider text-text-heading border-b border-border-custom pb-2 mb-4 md:mb-6 flex items-center gap-2 print:text-black print:border-gray-300">
-                                    <span className="font-mono text-accent print:hidden">/</span> Experience
+                                    <span className="font-mono text-accent print:hidden">/</span> Professional Experience
                                 </h2>
                                 <div className="space-y-6 md:space-y-8 print:space-y-6">
                                     {experience.map((job, idx) => (
@@ -111,7 +122,7 @@ export const Resume = () => {
                                                     {job.role}
                                                 </h3>
                                                 <span className="text-xs md:text-sm font-mono text-text-muted print:text-gray-600">
-                                                    {job.start_date} - {job.end_date}
+                                                    {job.start_date} – {job.end_date}
                                                 </span>
                                             </div>
                                             <div className="text-accent font-semibold mb-2 md:mb-3 text-sm">
@@ -138,14 +149,21 @@ export const Resume = () => {
                                 <div className="space-y-4 md:space-y-6 print:space-y-6">
                                     {projects.map((proj, idx) => (
                                         <div key={idx} className="bg-card-hover/60 rounded-xl p-4 md:p-6 border border-border-custom print:bg-transparent print:p-0 print:border-none">
-                                            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2 gap-1">
+                                            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-1.5 gap-1">
                                                 <h3 className="text-base font-bold text-text-heading print:text-black">
                                                     {proj.name}
                                                 </h3>
-                                                <span className="text-xs text-text-muted font-mono print:text-gray-600">
-                                                    {proj.duration}
-                                                </span>
+                                                {proj.duration && (
+                                                    <span className="text-xs text-text-muted font-mono print:text-gray-600">
+                                                        {proj.duration}
+                                                    </span>
+                                                )}
                                             </div>
+                                            {proj.technologies && (
+                                                <div className="text-xs font-mono text-accent mb-2.5 font-medium">
+                                                    {proj.technologies}
+                                                </div>
+                                            )}
                                             <ul className="space-y-1.5 text-text-muted text-xs sm:text-sm leading-relaxed print:text-gray-800">
                                                 {proj.description.map((desc, dIdx) => (
                                                     <li key={dIdx} className="flex items-start gap-2">
@@ -167,39 +185,33 @@ export const Resume = () => {
                             {/* Skills Section */}
                             <section>
                                 <h2 className="text-base md:text-lg font-bold uppercase tracking-wider text-text-heading border-b border-border-custom pb-2 mb-4 md:mb-6 print:text-black print:border-gray-300">
-                                    Skills
+                                    Technical Skills
                                 </h2>
                                 <div className="space-y-4 md:space-y-5">
-                                    <div>
-                                        <h3 className="font-bold text-text-heading text-xs uppercase tracking-wider mb-2 font-mono">Frontend</h3>
-                                        <div className="flex flex-wrap gap-1.5">
-                                            {skills.frontend.map(s => (
-                                                <span key={s} className="bg-card-hover px-2.5 py-1 rounded-md text-xs text-text-muted border border-border-custom print:bg-gray-100 print:text-black print:border-gray-200 font-medium">
-                                                    {s}
-                                                </span>
-                                            ))}
+                                    {skillClusters.map(cluster => (
+                                        <div key={cluster.title}>
+                                            <div className="flex items-center justify-between mb-1.5">
+                                                <h3 className="font-bold text-text-heading text-xs uppercase tracking-wider font-mono flex items-center gap-1.5">
+                                                    {cluster.highlight && <SparklesIcon className="w-3 h-3 text-accent" />}
+                                                    <span>{cluster.title}</span>
+                                                </h3>
+                                            </div>
+                                            <div className="flex flex-wrap gap-1.5">
+                                                {cluster.items.map(s => (
+                                                    <span
+                                                        key={s}
+                                                        className={`px-2.5 py-1 rounded-md text-xs font-medium border transition-colors ${
+                                                            cluster.highlight
+                                                                ? "bg-accent/10 text-text-heading border-accent/30 dark:bg-accent/15"
+                                                                : "bg-card-hover text-text-muted border-border-custom print:bg-gray-100 print:text-black print:border-gray-200"
+                                                        }`}
+                                                    >
+                                                        {s}
+                                                    </span>
+                                                ))}
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div>
-                                        <h3 className="font-bold text-text-heading text-xs uppercase tracking-wider mb-2 font-mono">Backend</h3>
-                                        <div className="flex flex-wrap gap-1.5">
-                                            {skills.backend.map(s => (
-                                                <span key={s} className="bg-card-hover px-2.5 py-1 rounded-md text-xs text-text-muted border border-border-custom print:bg-gray-100 print:text-black print:border-gray-200 font-medium">
-                                                    {s}
-                                                </span>
-                                            ))}
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <h3 className="font-bold text-text-heading text-xs uppercase tracking-wider mb-2 font-mono">Testing & Tools</h3>
-                                        <div className="flex flex-wrap gap-1.5">
-                                            {[...skills.testing_and_optimization, ...skills.tools_and_platforms].map(s => (
-                                                <span key={s} className="bg-card-hover px-2.5 py-1 rounded-md text-xs text-text-muted border border-border-custom print:bg-gray-100 print:text-black print:border-gray-200 font-medium">
-                                                    {s}
-                                                </span>
-                                            ))}
-                                        </div>
-                                    </div>
+                                    ))}
                                 </div>
                             </section>
 
@@ -210,7 +222,7 @@ export const Resume = () => {
                                 </h2>
                                 <div className="space-y-4">
                                     {education.map((edu, idx) => (
-                                        <div key={idx} className="p-3 rounded-xl bg-card-hover/40 border border-border-custom">
+                                        <div key={idx} className="p-3.5 rounded-xl bg-card-hover/40 border border-border-custom">
                                             <div className="font-bold text-text-heading text-sm print:text-black">
                                                 {edu.degree}
                                             </div>
@@ -233,9 +245,9 @@ export const Resume = () => {
                             {/* Achievements Section */}
                             <section>
                                 <h2 className="text-base md:text-lg font-bold uppercase tracking-wider text-text-heading border-b border-border-custom pb-2 mb-4 md:mb-6 print:text-black print:border-gray-300">
-                                    Achievements
+                                    Key Achievements
                                 </h2>
-                                <ul className="space-y-2">
+                                <ul className="space-y-2.5">
                                     {achievements.map((ach, idx) => (
                                         <li key={idx} className="text-xs sm:text-sm text-text-muted leading-relaxed print:text-gray-800 flex gap-2 font-medium">
                                             <StarIcon className="w-4 h-4 text-accent shrink-0 mt-0.5 print:hidden" aria-hidden="true" />
