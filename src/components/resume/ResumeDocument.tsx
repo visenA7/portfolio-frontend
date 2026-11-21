@@ -274,7 +274,8 @@ export const ResumeDocument = ({ data }: ResumeDocumentProps) => {
             {basics.notice_period && (
               <>
                 <Text style={styles.separator}>|</Text>
-                <Text style={{ fontSize: 8.5, fontFamily: 'Helvetica-Bold', color: '#A77C42' }}>
+                <Text style={styles.contactItem}>
+                  <Text style={{ fontFamily: 'Helvetica-Bold', color: '#A77C42' }}>Notice Period: </Text>
                   {basics.notice_period}
                 </Text>
               </>
@@ -492,7 +493,7 @@ export const ResumeDocument = ({ data }: ResumeDocumentProps) => {
               <View style={styles.bulletRow}>
                 <Text style={styles.bulletPoint}>•</Text>
                 <Text style={styles.bulletText}>
-                  <Text style={{ fontFamily: 'Helvetica-Bold' }}>Availability: </Text>
+                  <Text style={{ fontFamily: 'Helvetica-Bold' }}>Notice Period: </Text>
                   {basics.notice_period}
                 </Text>
               </View>

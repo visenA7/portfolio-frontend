@@ -107,7 +107,7 @@ export const Resume = () => {
                                 {basics.notice_period && (
                                     <div className="flex items-center md:justify-end gap-2 pt-1">
                                         <span className="px-2.5 py-0.5 bg-badge text-badge-text rounded-md text-xs font-semibold border border-badge-border font-mono print:bg-gray-100 print:text-black print:border-gray-300">
-                                            {basics.notice_period}
+                                            Notice Period: {basics.notice_period}
                                         </span>
                                     </div>
                                 )}
