@@ -15,8 +15,8 @@ flowchart TB
   Worker:::worker
   DB:::database
 
-  classDef service fill:#272A34,color:#F5F5F7,stroke:#4B5563;
-  classDef cache fill:#37302A,color:#FDE68A,stroke:#D97706;
-  classDef worker fill:#1E2B27,color:#A7F3D0,stroke:#059669;
-  classDef database fill:#1F242D,color:#E2E8F0,stroke:#64748B;
+  classDef service fill:#252119,color:#F4EFE5,stroke:#393229;
+  classDef cache fill:#3A3023,color:#F4EFE5,stroke:#C49A5A;
+  classDef worker fill:#211E19,color:#F4EFE5,stroke:#B0A797;
+  classDef database fill:#252119,color:#F4EFE5,stroke:#C49A5A;
 `;

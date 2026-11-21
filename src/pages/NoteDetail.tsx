@@ -40,7 +40,7 @@ export const NoteDetail = () => {
             <div className="mb-6">
                 <Link
                     to="/notes"
-                    className="inline-flex items-center gap-2 text-xs sm:text-sm font-mono font-medium text-text-muted hover:text-text-heading transition-colors py-1 px-2 rounded-md hover:bg-card-hover cursor-pointer"
+                    className="inline-flex items-center gap-2 text-xs sm:text-sm font-mono font-medium text-text-muted hover:text-accent transition-colors py-1 px-2 rounded-md hover:bg-card-hover cursor-pointer"
                 >
                     <ArrowLeftIcon className="w-4 h-4" aria-hidden="true" />
                     <span>Back to Engineering Notes</span>
@@ -50,11 +50,11 @@ export const NoteDetail = () => {
             {/* Header */}
             <header className="mb-8 md:mb-12 border-b border-border-custom pb-6 md:pb-8">
                 <div className="flex items-center gap-2 mb-3">
-                    <span className="p-1.5 rounded-lg bg-card-hover text-text-heading border border-border-custom">
+                    <span className="p-1.5 rounded-lg bg-card-hover text-accent border border-border-custom">
                         <BookOpenIcon className="w-4 h-4" aria-hidden="true" />
                     </span>
                     <span className="flex items-center gap-1.5 text-xs font-mono text-text-muted">
-                        <CalendarDaysIcon className="w-3.5 h-3.5 text-text-muted" aria-hidden="true" />
+                        <CalendarDaysIcon className="w-3.5 h-3.5 text-accent" aria-hidden="true" />
                         <span>{note.date}</span>
                     </span>
                 </div>
@@ -79,7 +79,7 @@ export const NoteDetail = () => {
             {/* Markdown Body */}
             {loading ? (
                 <div className="py-20 flex justify-center items-center">
-                    <div className="animate-spin rounded-full h-8 w-8 border-2 border-neutral-400 border-t-transparent"></div>
+                    <div className="animate-spin rounded-full h-8 w-8 border-2 border-accent border-t-transparent"></div>
                 </div>
             ) : (
                 <article className="bento-card rounded-3xl p-6 sm:p-10 border border-card-border shadow-md">

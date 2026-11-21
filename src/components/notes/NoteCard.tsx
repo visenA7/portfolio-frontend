@@ -9,15 +9,15 @@ export const NoteCard = ({ note }: { note: Note }) => {
                 {/* Meta Header */}
                 <div className="flex items-center justify-between mb-4">
                     <span className="flex items-center gap-1.5 text-xs font-mono text-text-muted">
-                        <CalendarDaysIcon className="w-3.5 h-3.5 text-text-muted" aria-hidden="true" />
+                        <CalendarDaysIcon className="w-3.5 h-3.5 text-accent" aria-hidden="true" />
                         <span>{note.date}</span>
                     </span>
-                    <span className="p-1.5 rounded-lg bg-card-hover border border-border-custom text-text-muted">
+                    <span className="p-1.5 rounded-lg bg-card-hover border border-border-custom text-accent">
                         <BookOpenIcon className="w-4 h-4" aria-hidden="true" />
                     </span>
                 </div>
 
-                <h3 className="text-xl font-bold text-text-heading group-hover:opacity-80 transition-opacity tracking-tight">
+                <h3 className="text-xl font-bold text-text-heading group-hover:text-accent transition-colors tracking-tight">
                     {note.title}
                 </h3>
 
@@ -42,7 +42,7 @@ export const NoteCard = ({ note }: { note: Note }) => {
             <div className="mt-6 pt-4 border-t border-border-custom">
                 <Link
                     to={`/notes/${note.id}`}
-                    className="inline-flex items-center gap-2 text-sm font-semibold text-text-heading hover:opacity-75 transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 rounded-md py-1"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-accent hover:opacity-80 transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-md py-1"
                 >
                     <span>Read Engineering Note</span>
                     <ArrowRightIcon className="w-4 h-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />

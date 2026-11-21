@@ -25,14 +25,14 @@ export const Header = ({ theme, toggleTheme }: HeaderProps) => {
                 {/* Brand / Logo */}
                 <Link 
                     to="/" 
-                    className="flex items-center gap-2.5 font-mono text-sm font-bold text-text-heading hover:opacity-80 transition-opacity group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 rounded-md px-1 py-0.5"
+                    className="flex items-center gap-2.5 font-mono text-sm font-bold text-text-heading hover:opacity-80 transition-opacity group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-md px-1 py-0.5"
                 >
                     <span className="relative flex h-2 w-2" title="Available for opportunities">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600 dark:bg-emerald-400"></span>
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
                     </span>
                     <span className="tracking-tight font-heading text-base text-text-heading">
-                        abhishekvisen<span className="text-text-muted">.dev</span>
+                        abhishekvisen<span className="text-accent">.dev</span>
                     </span>
                 </Link>
 
@@ -44,7 +44,7 @@ export const Header = ({ theme, toggleTheme }: HeaderProps) => {
                             to={link.href}
                             end={link.href === "/"}
                             className={({ isActive }) =>
-                                `px-3.5 py-1.5 rounded-lg transition-all duration-150 cursor-pointer text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 ${
+                                `px-3.5 py-1.5 rounded-lg transition-all duration-150 cursor-pointer text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
                                     isActive
                                         ? "bg-badge text-badge-text font-semibold border border-badge-border shadow-xs"
                                         : "text-text-muted hover:text-text-heading hover:bg-card-hover"
@@ -60,7 +60,7 @@ export const Header = ({ theme, toggleTheme }: HeaderProps) => {
                     {/* Quick Contact Link */}
                     <a
                         href="mailto:abhishekvisen7@gmail.com"
-                        className="px-3 py-1.5 rounded-lg text-xs font-mono font-medium text-text-muted hover:text-text-heading hover:bg-card-hover transition-colors flex items-center gap-1 focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:outline-none cursor-pointer"
+                        className="px-3 py-1.5 rounded-lg text-xs font-mono font-medium text-text-muted hover:text-accent hover:bg-card-hover transition-colors flex items-center gap-1 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none cursor-pointer"
                     >
                         <span>Contact</span>
                         <ArrowTopRightOnSquareIcon className="w-3.5 h-3.5" aria-hidden="true" />
@@ -69,13 +69,13 @@ export const Header = ({ theme, toggleTheme }: HeaderProps) => {
                     {/* Theme Toggle Button Desktop */}
                     <button
                         onClick={toggleTheme}
-                        className="p-2 ml-1 rounded-lg bg-card border border-border-custom text-text-muted hover:text-text-heading hover:border-card-hover-border transition-all shadow-xs min-h-[38px] min-w-[38px] flex items-center justify-center cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400"
+                        className="p-2 ml-1 rounded-lg bg-card border border-border-custom text-text-muted hover:text-accent hover:border-card-hover-border transition-all shadow-xs min-h-[38px] min-w-[38px] flex items-center justify-center cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                         aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
                     >
                         {theme === "light" ? (
                             <MoonIcon className="w-4 h-4" aria-hidden="true" />
                         ) : (
-                            <SunIcon className="w-4 h-4 text-amber-400" aria-hidden="true" />
+                            <SunIcon className="w-4 h-4 text-accent" aria-hidden="true" />
                         )}
                     </button>
                 </div>
@@ -85,20 +85,20 @@ export const Header = ({ theme, toggleTheme }: HeaderProps) => {
                     {/* Theme Toggle Button Mobile */}
                     <button
                         onClick={toggleTheme}
-                        className="p-2 rounded-lg bg-card border border-border-custom text-text-muted hover:text-text-heading transition-all shadow-xs min-h-[44px] min-w-[44px] flex items-center justify-center cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400"
+                        className="p-2 rounded-lg bg-card border border-border-custom text-text-muted hover:text-accent transition-all shadow-xs min-h-[44px] min-w-[44px] flex items-center justify-center cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                         aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
                     >
                         {theme === "light" ? (
                             <MoonIcon className="w-5 h-5" aria-hidden="true" />
                         ) : (
-                            <SunIcon className="w-5 h-5 text-amber-400" aria-hidden="true" />
+                            <SunIcon className="w-5 h-5 text-accent" aria-hidden="true" />
                         )}
                     </button>
 
                     {/* Mobile Menu Button */}
                     <button
                         onClick={() => setIsOpen(!isOpen)}
-                        className="p-2 min-h-[44px] min-w-[44px] rounded-lg border border-border-custom bg-card flex items-center justify-center text-text-muted hover:text-text-heading transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400"
+                        className="p-2 min-h-[44px] min-w-[44px] rounded-lg border border-border-custom bg-card flex items-center justify-center text-text-muted hover:text-accent transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                         aria-label={isOpen ? "Close menu" : "Open menu"}
                         aria-expanded={isOpen}
                     >
@@ -124,7 +124,7 @@ export const Header = ({ theme, toggleTheme }: HeaderProps) => {
                                     `block py-2.5 px-4 text-base font-medium rounded-lg transition-colors min-h-[44px] flex items-center cursor-pointer ${
                                         isActive
                                             ? "bg-badge text-badge-text font-semibold border border-badge-border"
-                                            : "text-text-muted hover:text-text-heading hover:bg-card-hover"
+                                            : "text-text-muted hover:text-accent hover:bg-card-hover"
                                     }`
                                 }
                                 onClick={() => setIsOpen(false)}

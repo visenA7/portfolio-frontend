@@ -17,7 +17,7 @@ export const Button = ({
     className = "",
     ...props
 }: ButtonProps) => {
-    const base = "inline-flex items-center justify-center font-medium rounded-xl transition-all duration-200 cursor-pointer min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-2 active:scale-98 disabled:opacity-50 disabled:pointer-events-none";
+    const base = "inline-flex items-center justify-center font-medium rounded-xl transition-all duration-200 cursor-pointer min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 active:scale-98 disabled:opacity-50 disabled:pointer-events-none";
 
     const sizes = {
         sm: "text-xs px-3.5 py-2 gap-1.5",
@@ -26,9 +26,9 @@ export const Button = ({
     };
 
     const variants = {
-        primary: "bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-white dark:text-neutral-950 dark:hover:bg-neutral-200 shadow-sm",
-        secondary: "bg-card border border-border-custom text-text-heading hover:bg-card-hover hover:border-neutral-400/50 shadow-xs",
-        outline: "border border-border-custom text-text-heading hover:border-neutral-500 hover:text-text-heading bg-transparent",
+        primary: "bg-[#A77C42] hover:bg-[#936c37] text-white dark:bg-[#C49A5A] dark:hover:bg-[#b2884a] dark:text-[#191713] font-semibold shadow-xs",
+        secondary: "bg-card border border-border-custom text-text-heading hover:bg-card-hover hover:border-accent shadow-xs",
+        outline: "border border-border-custom text-text-heading hover:border-accent hover:text-accent bg-transparent",
         ghost: "text-text-muted hover:text-text-heading hover:bg-card-hover",
     };
 

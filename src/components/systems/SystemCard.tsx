@@ -24,7 +24,7 @@ export const SystemCard = ({ system }: { system: System }) => {
             <div>
                 {/* Header Row */}
                 <div className="flex items-center justify-between mb-4">
-                    <div className="p-2.5 rounded-xl bg-card-hover border border-border-custom text-text-heading">
+                    <div className="p-2.5 rounded-xl bg-card-hover border border-border-custom text-accent">
                         <Icon className="w-5 h-5" aria-hidden="true" />
                     </div>
                     <span className="text-[11px] font-mono px-2.5 py-1 rounded-full bg-badge text-badge-text border border-badge-border">
@@ -32,7 +32,7 @@ export const SystemCard = ({ system }: { system: System }) => {
                     </span>
                 </div>
 
-                <h3 className="text-xl font-bold text-text-heading group-hover:opacity-80 transition-opacity tracking-tight">
+                <h3 className="text-xl font-bold text-text-heading group-hover:text-accent transition-colors tracking-tight">
                     {system.title}
                 </h3>
 
@@ -48,7 +48,7 @@ export const SystemCard = ({ system }: { system: System }) => {
                     <ul className="space-y-1.5">
                         {system.highlights.map(h => (
                             <li key={h} className="flex items-center gap-2 text-xs sm:text-sm text-text-muted">
-                                <CheckCircleIcon className="w-4 h-4 text-emerald-700 dark:text-emerald-400 shrink-0" aria-hidden="true" />
+                                <CheckCircleIcon className="w-4 h-4 text-accent shrink-0" aria-hidden="true" />
                                 <span>{h}</span>
                             </li>
                         ))}
@@ -60,7 +60,7 @@ export const SystemCard = ({ system }: { system: System }) => {
             <div className="mt-6 pt-4 border-t border-border-custom">
                 <Link
                     to={`/systems/${system.id}`}
-                    className="inline-flex items-center gap-2 text-sm font-semibold text-text-heading hover:opacity-75 transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 rounded-md py-1"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-accent hover:opacity-80 transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-md py-1"
                 >
                     <span>Explore Deep Dive & Topology</span>
                     <ArrowRightIcon className="w-4 h-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />

@@ -25,7 +25,7 @@ export const Home = () => {
                         <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
                             <div className="max-w-2xl">
                                 <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-badge text-badge-text border border-badge-border text-xs font-mono font-semibold uppercase tracking-wider mb-4">
-                                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                                    <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
                                     <span>Immediate Joiner • Open to Senior Roles</span>
                                 </span>
                                 <h2 className="text-3xl sm:text-4xl font-extrabold text-text-heading tracking-tight leading-tight">
@@ -39,7 +39,7 @@ export const Home = () => {
                             <div className="flex flex-wrap items-center justify-center gap-3 shrink-0">
                                 <a
                                     href="mailto:abhishekvisen7@gmail.com"
-                                    className="px-6 py-3.5 rounded-xl bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-white dark:text-neutral-950 dark:hover:bg-neutral-200 font-semibold text-sm transition-all shadow-sm flex items-center gap-2 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400"
+                                    className="px-6 py-3.5 rounded-xl bg-[#A77C42] hover:bg-[#936c37] text-white dark:bg-[#C49A5A] dark:hover:bg-[#b2884a] dark:text-[#191713] font-semibold text-sm transition-all shadow-xs flex items-center gap-2 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                                 >
                                     <EnvelopeIcon className="w-4 h-4" aria-hidden="true" />
                                     <span>abhishekvisen7@gmail.com</span>
@@ -47,9 +47,9 @@ export const Home = () => {
 
                                 <Link
                                     to="/resume"
-                                    className="px-5 py-3.5 rounded-xl bg-card border border-border-custom hover:bg-card-hover hover:border-card-hover-border text-text-heading font-semibold text-sm transition-all shadow-xs flex items-center gap-2 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400"
+                                    className="px-5 py-3.5 rounded-xl bg-card border border-border-custom hover:bg-card-hover hover:border-accent text-text-heading font-semibold text-sm transition-all shadow-xs flex items-center gap-2 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                                 >
-                                    <DocumentArrowDownIcon className="w-4 h-4 text-text-muted" aria-hidden="true" />
+                                    <DocumentArrowDownIcon className="w-4 h-4 text-accent" aria-hidden="true" />
                                     <span>View Resume</span>
                                     <ArrowRightIcon className="w-3.5 h-3.5 text-text-muted" aria-hidden="true" />
                                 </Link>

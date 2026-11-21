@@ -1,49 +1,58 @@
 @import "tailwindcss";
 
 :root {
-    --bg-color: #FBFBFA;
-    --bg-elevated: #FFFFFF;
-    --text-color: #27282D;
-    --text-heading: #111215;
-    --text-muted: #5C606A;
-    --border-color: #E6E6E3;
-    --card-bg: #FFFFFF;
-    --card-hover-bg: #F4F4F1;
-    --card-border: #E6E6E3;
-    --card-hover-border: #B8B8B2;
-    --badge-bg: rgba(24, 24, 27, 0.05);
-    --badge-text: #18181B;
-    --badge-border: rgba(24, 24, 27, 0.12);
-    --primary-accent: #18181B;
-    --accent-emerald: #047857;
-    --accent-amber: #B45309;
+    --bg-color: #FAF7F0;
+    --surface: #FFFFFF;
+    --surface-secondary: #F0E9DC;
+    --text-primary: #29261F;
+    --text-secondary: #777064;
+    --accent: #A77C42;
+    --border: #E7DECF;
+    --highlight: #E8D9BC;
+
+    /* Semantic mappings */
+    --card-bg: var(--surface);
+    --card-hover-bg: var(--surface-secondary);
+    --card-border: var(--border);
+    --card-hover-border: var(--accent);
+    --text-heading: var(--text-primary);
+    --text-muted: var(--text-secondary);
+    --badge-bg: var(--highlight);
+    --badge-text: var(--text-primary);
+    --badge-border: var(--border);
+    --primary-accent: var(--accent);
 }
 
 .dark {
-    --bg-color: #0D0E11;
-    --bg-elevated: #13151A;
-    --text-color: #DFE0E5;
-    --text-heading: #F5F5F7;
-    --text-muted: #8E929E;
-    --border-color: rgba(255, 255, 255, 0.08);
-    --card-bg: #14161C;
-    --card-hover-bg: #1B1E26;
-    --card-border: rgba(255, 255, 255, 0.08);
-    --card-hover-border: rgba(255, 255, 255, 0.22);
-    --badge-bg: rgba(255, 255, 255, 0.06);
-    --badge-text: #E5E7EB;
-    --badge-border: rgba(255, 255, 255, 0.15);
-    --primary-accent: #FFFFFF;
-    --accent-emerald: #10B981;
-    --accent-amber: #F59E0B;
+    --bg-color: #191713;
+    --surface: #211E19;
+    --surface-secondary: #252119;
+    --text-primary: #F4EFE5;
+    --text-secondary: #B0A797;
+    --accent: #C49A5A;
+    --border: #393229;
+    --highlight: #3A3023;
+
+    /* Semantic mappings */
+    --card-bg: var(--surface);
+    --card-hover-bg: var(--surface-secondary);
+    --card-border: var(--border);
+    --card-hover-border: var(--accent);
+    --text-heading: var(--text-primary);
+    --text-muted: var(--text-secondary);
+    --badge-bg: var(--highlight);
+    --badge-text: var(--text-primary);
+    --badge-border: var(--border);
+    --primary-accent: var(--accent);
 }
 
 @theme {
     --color-background: var(--bg-color);
-    --color-background-elevated: var(--bg-elevated);
-    --color-foreground: var(--text-color);
+    --color-surface: var(--surface);
+    --color-surface-secondary: var(--surface-secondary);
+    --color-foreground: var(--text-primary);
     
-    --color-border-custom: var(--border-color);
+    --color-border-custom: var(--border);
     --color-card: var(--card-bg);
     --color-card-bg: var(--card-bg);
     --color-card-hover: var(--card-hover-bg);
@@ -56,8 +65,7 @@
     --color-badge-text: var(--badge-text);
     --color-badge-border: var(--badge-border);
     --color-accent: var(--primary-accent);
-    --color-accent-emerald: var(--accent-emerald);
-    --color-accent-amber: var(--accent-amber);
+    --color-highlight: var(--highlight);
     
     --font-heading: 'Space Grotesk', system-ui, -apple-system, sans-serif;
     --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
@@ -94,20 +102,11 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Subtle background grid pattern with warm neutral dots */
 .bg-grid-pattern {
-    background-image: radial-gradient(circle at 1px 1px, var(--border-color) 1px, transparent 0);
+    background-image: radial-gradient(circle at 1px 1px, var(--border) 1px, transparent 0);
     background-size: 32px 32px;
 }
 
 @layer components {
-    /* Executive metallic/graphite sheen instead of generic neon rainbow */
-    .bg-metallic-text {
-        background: linear-gradient(135deg, #111215 0%, #4B5563 100%);
-    }
-
-    .dark .bg-metallic-text {
-        background: linear-gradient(135deg, #FFFFFF 0%, #A1A1AA 100%);
-    }
-
     .bento-card {
         background-color: var(--card-bg);
         border: 1px solid var(--card-border);
@@ -118,11 +117,11 @@ h1, h2, h3, h4, h5, h6 {
         background-color: var(--card-hover-bg);
         border-color: var(--card-hover-border);
         transform: translateY(-2px);
-        box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 8px 20px -6px rgba(41, 38, 31, 0.08);
     }
 
     .dark .bento-card:hover {
-        box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.4);
+        box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.5);
     }
 }
 

@@ -56,7 +56,7 @@ export const SystemSnapshot = () => (
     <section className="py-8 md:py-10 border-b border-border-custom bg-card/40 transition-colors duration-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <div className="flex items-center gap-2 mb-4">
-                <span className="flex h-2 w-2 rounded-full bg-emerald-600 dark:bg-emerald-400"></span>
+                <span className="flex h-2 w-2 rounded-full bg-accent"></span>
                 <span className="text-xs font-mono font-semibold uppercase tracking-wider text-text-muted">
                     Production Performance & Engineering Benchmarks
                 </span>
@@ -68,15 +68,15 @@ export const SystemSnapshot = () => (
                     return (
                         <div
                             key={item.label}
-                            className="bento-card p-3 rounded-xl flex flex-col justify-between group hover:border-card-hover-border transition-all cursor-default"
+                            className="bento-card p-3 rounded-xl flex flex-col justify-between group hover:border-accent transition-all cursor-default"
                         >
                             <div className="flex items-center justify-between mb-2">
-                                <div className="p-1.5 rounded-lg bg-card-hover border border-border-custom text-text-muted group-hover:text-text-heading transition-colors">
+                                <div className="p-1.5 rounded-lg bg-card-hover border border-border-custom text-accent group-hover:scale-105 transition-transform">
                                     <Icon className="w-4 h-4" aria-hidden="true" />
                                 </div>
                             </div>
                             <div>
-                                <div className="text-sm md:text-base font-extrabold font-mono text-text-heading">
+                                <div className="text-sm md:text-base font-extrabold font-mono text-text-heading group-hover:text-accent transition-colors">
                                     {item.metric}
                                 </div>
                                 <div className="text-[11px] text-text-muted font-medium leading-tight mt-0.5 truncate" title={item.label}>

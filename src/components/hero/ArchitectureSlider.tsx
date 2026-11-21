@@ -32,9 +32,9 @@ export const ArchitectureSlider = () => {
             {/* Terminal Window Header */}
             <div className="px-4 py-3 bg-card-hover border-b border-border-custom flex flex-wrap items-center justify-between gap-3">
                 <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-neutral-400 dark:bg-neutral-600 inline-block"></span>
-                    <span className="w-2.5 h-2.5 rounded-full bg-neutral-400 dark:bg-neutral-600 inline-block"></span>
-                    <span className="w-2.5 h-2.5 rounded-full bg-neutral-400 dark:bg-neutral-600 inline-block"></span>
+                    <span className="w-2.5 h-2.5 rounded-full bg-border-custom inline-block"></span>
+                    <span className="w-2.5 h-2.5 rounded-full bg-border-custom inline-block"></span>
+                    <span className="w-2.5 h-2.5 rounded-full bg-border-custom inline-block"></span>
                     <span className="text-xs font-mono font-medium text-text-muted ml-2 hidden sm:inline">
                         topology_preview.v2
                     </span>
@@ -49,9 +49,9 @@ export const ArchitectureSlider = () => {
                             <button
                                 key={panel.id}
                                 onClick={() => setActiveTab(panel.id as "backend" | "frontend")}
-                                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer min-h-[32px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 ${
+                                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer min-h-[32px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
                                     isActive
-                                        ? "bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 font-semibold shadow-xs"
+                                        ? "bg-[#A77C42] text-white dark:bg-[#C49A5A] dark:text-[#191713] font-semibold shadow-xs"
                                         : "text-text-muted hover:text-text-heading"
                                 }`}
                                 aria-pressed={isActive}
@@ -88,7 +88,7 @@ export const ArchitectureSlider = () => {
             {/* Bottom Insight Footer */}
             <div className="px-4 py-2.5 bg-card-hover/40 border-t border-border-custom text-xs font-mono text-text-muted flex items-center justify-between">
                 <span>Interactive Mermaid Visualizer</span>
-                <span className="text-emerald-700 dark:text-emerald-400 font-medium">99.9% Uptime Topologies</span>
+                <span className="text-accent font-medium">99.9% Uptime Topologies</span>
             </div>
         </div>
     );

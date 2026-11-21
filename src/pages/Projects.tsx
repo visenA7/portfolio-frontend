@@ -94,7 +94,7 @@ export const Projects = () => {
                                     <div className="flex-1">
                                         {/* Meta Bar */}
                                         <div className="flex flex-wrap items-center gap-3 mb-4">
-                                            <div className="p-2 rounded-xl bg-card-hover border border-border-custom text-text-heading">
+                                            <div className="p-2 rounded-xl bg-card-hover border border-border-custom text-accent">
                                                 <Icon className="w-5 h-5" aria-hidden="true" />
                                             </div>
                                             <span className="px-3 py-1 bg-badge text-badge-text rounded-full text-xs font-mono font-semibold border border-badge-border flex items-center gap-1.5">
@@ -102,7 +102,7 @@ export const Projects = () => {
                                                 <span>{project.role}</span>
                                             </span>
                                             <span className="text-xs font-mono text-text-muted flex items-center gap-1">
-                                                <CalendarIcon className="w-3.5 h-3.5" aria-hidden="true" />
+                                                <CalendarIcon className="w-3.5 h-3.5 text-accent" aria-hidden="true" />
                                                 <span>{project.timeline}</span>
                                             </span>
                                         </div>
@@ -117,13 +117,13 @@ export const Projects = () => {
 
                                         {/* Features & Architectural Impact */}
                                         <div className="mt-6 pt-5 border-t border-border-custom">
-                                            <h3 className="text-xs font-mono font-bold uppercase tracking-widest text-text-muted mb-3.5">
+                                            <h3 className="text-xs font-mono font-bold uppercase tracking-widest text-accent mb-3.5">
                                                 Key Architecture & Production Impact
                                             </h3>
                                             <ul className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
                                                 {project.features.map((f) => (
                                                     <li key={f} className="flex items-start gap-2.5 text-xs sm:text-sm text-text-muted">
-                                                        <CheckCircleIcon className="w-4 h-4 text-emerald-700 dark:text-emerald-400 shrink-0 mt-0.5" aria-hidden="true" />
+                                                        <CheckCircleIcon className="w-4 h-4 text-accent shrink-0 mt-0.5" aria-hidden="true" />
                                                         <span>{f}</span>
                                                     </li>
                                                 ))}
@@ -148,7 +148,7 @@ export const Projects = () => {
                                 <div className="mt-8 pt-4 border-t border-border-custom flex items-center justify-between">
                                     <Link
                                         to={project.link}
-                                        className="inline-flex items-center gap-2 text-sm font-bold text-text-heading hover:opacity-75 transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 py-1"
+                                        className="inline-flex items-center gap-2 text-sm font-bold text-accent hover:opacity-80 transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent py-1"
                                     >
                                         <span>{project.linkText}</span>
                                         <ArrowRightIcon className="w-4 h-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
