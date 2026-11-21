@@ -59,7 +59,7 @@ export const Resume = () => {
                             ) : (
                                 <span className="flex items-center gap-2">
                                     <ArrowDownTrayIcon className="w-4 h-4" aria-hidden="true" />
-                                    <span>Download 2-Page PDF</span>
+                                    <span>Download Resume PDF</span>
                                 </span>
                             )
                         }
