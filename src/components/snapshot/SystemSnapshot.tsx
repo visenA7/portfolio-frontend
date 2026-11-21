@@ -6,7 +6,7 @@ const stats = [
     "👥 15,000+ employees lifecycle",
     "🔄 30% fewer deployment failures",
     "🤖 AI-powered HRMS assistant",
-    "⚛️ React & .NET Microservices"
+    "🛠️ Claude Tools & Skills Hosted"
 ];
 
 export const SystemSnapshot = () => (

@@ -63,21 +63,32 @@ export const Hero = () => {
                         <div className="mt-8 flex flex-wrap gap-3 sm:gap-4">
                             <a
                                 href="/systems"
-                                className="px-6 py-3 min-h-[44px] rounded-lg bg-card border border-border-custom text-text-heading font-bold hover:bg-sky-600 dark:hover:bg-sky-500 hover:text-white hover:border-sky-500 transition-all text-sm uppercase tracking-wide backdrop-blur-sm text-center shadow-sm hover:shadow-md cursor-pointer"
+                                className="px-6 py-3 min-h-[44px] rounded-lg bg-card border border-border-custom text-text-heading font-bold hover:bg-sky-600 dark:hover:bg-sky-500 hover:text-white hover:border-sky-500 transition-all text-sm uppercase tracking-wide backdrop-blur-sm text-center shadow-sm hover:shadow-md cursor-pointer flex items-center justify-center"
                             >
                                 Systems
                             </a>
                             <a
                                 href="/frontend"
-                                className="px-6 py-3 min-h-[44px] rounded-lg bg-card border border-border-custom text-text-heading font-bold hover:bg-indigo-600 dark:hover:bg-indigo-500 hover:text-white hover:border-indigo-500 transition-all text-sm uppercase tracking-wide backdrop-blur-sm text-center shadow-sm hover:shadow-md cursor-pointer"
+                                className="px-6 py-3 min-h-[44px] rounded-lg bg-card border border-border-custom text-text-heading font-bold hover:bg-indigo-600 dark:hover:bg-indigo-500 hover:text-white hover:border-indigo-500 transition-all text-sm uppercase tracking-wide backdrop-blur-sm text-center shadow-sm hover:shadow-md cursor-pointer flex items-center justify-center"
                             >
                                 Frontend
                             </a>
                             <a
                                 href="/projects"
-                                className="px-6 py-3 min-h-[44px] rounded-lg bg-card border border-border-custom text-text-heading font-bold hover:bg-purple-600 dark:hover:bg-purple-500 hover:text-white hover:border-purple-500 transition-all text-sm uppercase tracking-wide backdrop-blur-sm text-center shadow-sm hover:shadow-md cursor-pointer"
+                                className="px-6 py-3 min-h-[44px] rounded-lg bg-card border border-border-custom text-text-heading font-bold hover:bg-purple-600 dark:hover:bg-purple-500 hover:text-white hover:border-purple-500 transition-all text-sm uppercase tracking-wide backdrop-blur-sm text-center shadow-sm hover:shadow-md cursor-pointer flex items-center justify-center"
                             >
                                 Projects
+                            </a>
+                            <a
+                                href="/claude.zip"
+                                download="claude.zip"
+                                className="px-5 py-3 min-h-[44px] rounded-lg bg-gradient-to-r from-sky-600 to-indigo-600 hover:from-sky-500 hover:to-indigo-500 text-white font-bold transition-all text-sm uppercase tracking-wide text-center shadow-md hover:shadow-lg hover:shadow-sky-500/25 cursor-pointer flex items-center justify-center gap-2"
+                                title="Download Claude Tools & Skills Bundle (24 MB)"
+                            >
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                </svg>
+                                Claude Tools (.zip)
                             </a>
                         </div>
 
