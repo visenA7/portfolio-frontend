@@ -48,11 +48,12 @@ export const Hero = () => {
 
                         {/* Concise Value Proposition */}
                         <p className="text-text-muted text-base sm:text-lg leading-relaxed max-w-2xl font-normal">
-                            Architecting resilient multi-tenant enterprise platforms and microservices using{" "}
-                            <strong className="text-text-heading font-semibold">React, Node.js, ASP.NET Core</strong>, and{" "}
-                            <strong className="text-text-heading font-semibold">PostgreSQL</strong>. Proven track record handling{" "}
+                            Architecting resilient enterprise AI platforms, event-driven microservices, and distributed data systems using{" "}
+                            <strong className="text-text-heading font-semibold">.NET 10, React, Node.js</strong>, and{" "}
+                            <strong className="text-text-heading font-semibold">Apache Kafka</strong>. Architected{" "}
+                            <strong className="text-accent font-semibold">PropEquityAI</strong> (governed NL-to-SQL via MCP & hybrid vector search) and platforms handling{" "}
                             <span className="font-semibold font-mono text-text-heading">500K+ daily requests</span> with{" "}
-                            <span className="text-accent font-semibold font-mono">sub-50ms latency</span> and slashing CPU utilization by 50%.
+                            <span className="text-accent font-semibold font-mono">sub-50ms latency</span>.
                         </p>
 
                         {/* Primary CTAs - Bespoke Accent & Surface Actions */}

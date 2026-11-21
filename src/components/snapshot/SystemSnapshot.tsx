@@ -2,18 +2,28 @@ import {
     RocketLaunchIcon,
     ClockIcon,
     CpuChipIcon,
-    ArrowTrendingUpIcon,
-    UserGroupIcon,
-    ShieldCheckIcon,
     SparklesIcon,
-    ServerStackIcon
+    UserGroupIcon,
+    ServerStackIcon,
+    ShieldCheckIcon,
+    CircleStackIcon
 } from "@heroicons/react/24/outline";
 
 const snapshotMetrics = [
     {
-        icon: RocketLaunchIcon,
-        metric: "500K+",
-        label: "Daily API Requests",
+        icon: SparklesIcon,
+        metric: "NL-to-SQL",
+        label: "Governed via MCP",
+    },
+    {
+        icon: ServerStackIcon,
+        metric: "29 Topics",
+        label: "~30 Kafka Consumers",
+    },
+    {
+        icon: UserGroupIcon,
+        metric: "10K+",
+        label: "Concurrent Sessions",
     },
     {
         icon: ClockIcon,
@@ -21,34 +31,24 @@ const snapshotMetrics = [
         label: "Delivery Latency",
     },
     {
+        icon: RocketLaunchIcon,
+        metric: "500K+",
+        label: "Daily API Requests",
+    },
+    {
         icon: CpuChipIcon,
         metric: "90% → <40%",
         label: "CPU Optimization",
     },
     {
-        icon: ArrowTrendingUpIcon,
-        metric: "30%",
-        label: "Load Time Speedup",
-    },
-    {
-        icon: UserGroupIcon,
-        metric: "15,000+",
-        label: "Active Workforce",
+        icon: CircleStackIcon,
+        metric: "Hybrid AI",
+        label: "Qdrant + Elasticsearch",
     },
     {
         icon: ShieldCheckIcon,
-        metric: "30%",
-        label: "Fewer Deploy Failures",
-    },
-    {
-        icon: SparklesIcon,
-        metric: "AI-Powered",
-        label: "HRMS Assistant",
-    },
-    {
-        icon: ServerStackIcon,
-        metric: "React & .NET",
-        label: "Microservices",
+        metric: "AES-256",
+        label: "PII Encryption & Audit",
     }
 ];
 

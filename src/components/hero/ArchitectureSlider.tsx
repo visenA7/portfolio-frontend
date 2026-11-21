@@ -1,9 +1,18 @@
 import { useState } from "react";
+import { PropEquityArchitectureVisual } from "./PropEquityArchitectureVisual";
 import { BackendArchitectureVisual } from "./BackendArchitectureVisual";
 import { FrontendArchitectureVisual } from "./FrontendArchitectureVisual";
-import { ServerStackIcon, ComputerDesktopIcon } from "@heroicons/react/24/outline";
+import { ServerStackIcon, ComputerDesktopIcon, SparklesIcon } from "@heroicons/react/24/outline";
 
 const PANELS = [
+    {
+        id: "propequity",
+        label: "PropEquityAI Platform Architecture",
+        shortLabel: "PropEquityAI (AI + .NET 10)",
+        icon: SparklesIcon,
+        Component: PropEquityArchitectureVisual,
+        subtext: "Governed MCP NL-to-SQL • Kafka (29 Topics) • Qdrant Vector Search • SuperTokens"
+    },
     {
         id: "backend",
         label: "Distributed Backend Architecture",
@@ -23,7 +32,7 @@ const PANELS = [
 ];
 
 export const ArchitectureSlider = () => {
-    const [activeTab, setActiveTab] = useState<"backend" | "frontend">("backend");
+    const [activeTab, setActiveTab] = useState<string>("propequity");
     const currentPanel = PANELS.find(p => p.id === activeTab) || PANELS[0];
     const ActiveComponent = currentPanel.Component;
 
@@ -41,15 +50,15 @@ export const ArchitectureSlider = () => {
                 </div>
 
                 {/* Tab Switcher */}
-                <div className="flex items-center p-1 bg-background rounded-xl border border-border-custom">
+                <div className="flex items-center p-1 bg-background rounded-xl border border-border-custom overflow-x-auto max-w-full">
                     {PANELS.map((panel) => {
                         const Icon = panel.icon;
                         const isActive = activeTab === panel.id;
                         return (
                             <button
                                 key={panel.id}
-                                onClick={() => setActiveTab(panel.id as "backend" | "frontend")}
-                                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer min-h-[32px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
+                                onClick={() => setActiveTab(panel.id)}
+                                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer min-h-[32px] shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
                                     isActive
                                         ? "bg-[#A77C42] text-white dark:bg-[#C49A5A] dark:text-[#191713] font-semibold shadow-xs"
                                         : "text-text-muted hover:text-text-heading"
@@ -88,7 +97,7 @@ export const ArchitectureSlider = () => {
             {/* Bottom Insight Footer */}
             <div className="px-4 py-2.5 bg-card-hover/40 border-t border-border-custom text-xs font-mono text-text-muted flex items-center justify-between">
                 <span>Interactive Mermaid Visualizer</span>
-                <span className="text-accent font-medium">99.9% Uptime Topologies</span>
+                <span className="text-accent font-medium">Production Architecture</span>
             </div>
         </div>
     );

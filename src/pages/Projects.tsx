@@ -1,6 +1,7 @@
 import { Container } from "../components/layout/Container";
 import { Link } from "react-router-dom";
 import {
+    SparklesIcon,
     ServerStackIcon,
     ChatBubbleLeftRightIcon,
     MapIcon,
@@ -11,6 +12,40 @@ import {
 } from "@heroicons/react/24/outline";
 
 const projects = [
+    {
+        id: "propequityai",
+        title: "PropEquityAI — AI Real-Estate Intelligence Platform",
+        role: "Lead Systems Architect & Full Stack Engineer",
+        timeline: "Production Platform",
+        icon: SparklesIcon,
+        description: "An AI-powered real-estate market-intelligence platform enabling conversational access to structured property databases, RERA filings, and rental trends. Engineered with .NET 10 Clean Architecture, governed natural-language-to-SQL via MCP, Kafka event pipelines, and bank-grade PII security.",
+        tech: [
+            ".NET 10",
+            "C#",
+            "Clean Architecture",
+            "Semantic Kernel",
+            "OpenAI",
+            "MCP Gateway",
+            "Apache Kafka",
+            "Qdrant Vector DB",
+            "Elasticsearch",
+            "MySQL",
+            "MongoDB",
+            "Redis",
+            "SuperTokens",
+            "SignalR",
+            "Docker"
+        ],
+        features: [
+            "Governed Natural-Language-to-SQL via Model Context Protocol (MCP) and Microsoft Semantic Kernel against curated RERA databases",
+            "Hybrid AI retrieval engine coupling Qdrant vector semantic search with Elasticsearch for sub-millisecond, typo-tolerant lookups",
+            "Event-driven Kafka bus managing ~30 background consumers across 29 topics with Dead-Letter Queues and fault-tolerant retry policies",
+            "Dual-mode enterprise authentication: SuperTokens session microservice (Node.js/Redis) plus in-house RS256 JWT/JWKS discovery",
+            "Full commercial monetization workflow: 17-step onboarding funnel, credit wallet engine, Razorpay webhooks, and AES-256-GCM PII encryption at rest"
+        ],
+        link: "/systems/propequityai",
+        linkText: "View Platform Architecture & Deep Dive"
+    },
     {
         id: "hrms",
         title: "Enterprise HRMS Platform",

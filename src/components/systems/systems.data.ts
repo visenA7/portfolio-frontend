@@ -2,6 +2,17 @@ import type { System } from "../../types/system";
 
 export const systems: System[] = [
     {
+        id: "propequityai",
+        title: "PropEquityAI Market Intelligence",
+        summary: "AI-powered real-estate intelligence with governed NL-to-SQL via MCP, .NET 10 Clean Architecture & Kafka",
+        highlights: [
+            "OpenAI & Semantic Kernel + MCP Gateway",
+            "Kafka Event Pipeline (29 Topics, ~30 Consumers)",
+            "Hybrid Vector (Qdrant) & Full-Text (Elasticsearch)",
+            "Enterprise Auth: SuperTokens + In-House RS256 JWT"
+        ]
+    },
+    {
         id: "hrms",
         title: "Enterprise HRMS Platform",
         summary: "Production-grade HRMS with payroll & shift attendance",

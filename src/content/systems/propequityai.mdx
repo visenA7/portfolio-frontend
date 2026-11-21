@@ -1,0 +1,125 @@
+# PropEquityAI — Platform & Architecture Overview
+
+**PropEquityAI** is an enterprise-grade AI-powered real-estate market intelligence platform. It enables real-estate buyers, institutional investors, and brokers to query fragmented Indian property datasets in natural language (e.g., *"What are the rental trends in this colony?"*, *"Show all RERA-registered projects by this builder"*), returning governed tabular reports, analytical summaries, and visualizations backed by real RERA filings and verified transactions.
+
+---
+
+## 1. High-Level Architecture Topology
+
+\`\`\`mermaid
+flowchart TD
+    subgraph Clients [Clients & Access Layers]
+        CB[Customer Browser & Mobile]
+        IT[Internal Operations / Admin]
+        MA[Mobile Apps & Partners]
+    end
+
+    subgraph EntryPoints [Deployable Applications - .NET 10]
+        Web[PropEquityAI.Web<br/>AI Chatbot + Wallet + Funnel]
+        CPanel[PropEquityAI.CPanel<br/>Admin & Monitoring Console]
+        PropAPI[Prop.API<br/>Versioned REST API v1/v2]
+        AuthWeb[Auth.Web<br/>OIDC & Login Gateway]
+    end
+
+    subgraph AuthLayer [Identity & Access Management]
+        SuperTokens[SuperTokens auth-service<br/>Node.js + Fastify + Redis]
+        InHouseJWT[In-House RS256 JWT<br/>Self-Hosted JWKS Fallback]
+    end
+
+    subgraph AIOrchestration [AI & Hybrid Search Engine]
+        MCP[MCP Governed NL-to-SQL Gateway]
+        SK[OpenAI + Semantic Kernel]
+        Qdrant[(Qdrant Vector DB<br/>Semantic Search)]
+        Elastic[(Elasticsearch<br/>Exact & Typo Search)]
+    end
+
+    subgraph AsyncPipeline [Event-Driven Pipeline]
+        Kafka{{Apache Kafka Bus<br/>29 Topics / Dead-Letter Queues}}
+        Worker[PropEquityAI.Worker<br/>Background Processing Pool]
+    end
+
+    subgraph StorageLayer [Multi-Model Data Stores]
+        MySQL[(MySQL Core<br/>Pomelo EF Core + Dapper)]
+        MongoDB[(MongoDB<br/>Chat History & Audit Logs)]
+        Redis[(Redis Cache<br/>Single-Flight Stampede Guard)]
+    end
+
+    CB --> Web
+    IT --> CPanel
+    MA --> PropAPI
+
+    Web --> AuthWeb
+    AuthWeb --> SuperTokens
+    AuthWeb -. Feature Flag .-> InHouseJWT
+
+    Web --> MCP
+    MCP --> SK
+    MCP --> Qdrant
+    MCP --> Elastic
+    MCP --> MySQL
+
+    Web --> MongoDB
+    Web --> Redis
+
+    Web -- Async Events --> Kafka
+    Kafka --> Worker
+    Worker --> MySQL
+    Worker --> Qdrant
+\`\`\`
+
+---
+
+## 2. Core Architectural Pillars
+
+### 2.1 Governed NL-to-SQL via Model Context Protocol (MCP)
+A core risk with LLMs in enterprise data environments is hallucinated SQL queries or unauthorized table mutations. PropEquityAI employs an isolated **MCP (Model Context Protocol) gateway**:
+- **Controlled Contract:** Natural language questions are parsed through **Microsoft Semantic Kernel** tool plugins. The model does not connect directly to the underlying database; instead, queries are validated against strict schema allowlists and executed within read-only timeout budgets.
+- **Display Template Recommendation:** The MCP gateway simultaneously outputs the tabular data payload and a suggested client display structure (data grid, summary card, bar chart, or geographic distribution).
+- **Dual-Engine Feature Flag:** The system incorporates a runtime toggle allowing instant fallback between the governed MCP engine and the legacy semantic retrieval path without redeployment.
+
+### 2.2 Hybrid AI Retrieval Engine (Qdrant + Elasticsearch)
+Real-estate search queries require both fuzzy semantic comprehension and strict keyword precision:
+- **Semantic Vector Search (Qdrant):** Captures conceptual intent (e.g., *"quiet 3BHK near metro stations"* matches listings without requiring exact phrase matches).
+- **High-Performance Keyword Index (Elasticsearch):** Performs sub-millisecond, typo-tolerant lookups on proper nouns: developer names, specific RERA registration numbers, locality codes, and builder brands.
+- **Combined Reranking:** Candidate results from both engines are scored and synthesized before reaching the LLM context window, ensuring grounded answers.
+
+### 2.3 Event-Driven Asynchronous Processing (Apache Kafka)
+To guarantee sub-50ms chat response times and prevent request blocking:
+- **29 Kafka Topics & ~30 Background Consumers:** Write-heavy tasks—such as storing session transcripts in MongoDB, updating user wallet balances, synchronizing subscription status, notifying watchlists, and logging analytics—are published asynchronously.
+- **Dead-Letter Queues (DLQ) & Circuit Breakers:** Fault-tolerant message handling with retry policies ensures that failed downstream updates are sequestered without losing user transactions.
+- **SignalR Real-Time Push:** When asynchronous background computations or RERA report syncs complete, updates are pushed directly to the user's browser via SignalR with Redis backplane.
+
+### 2.4 Enterprise Security, Identity & PII Protection
+- **Dual Identity Architecture:** Runs a battle-tested **SuperTokens** authentication microservice (Node.js + Fastify + Redis) with 15-minute rotating access tokens and refresh tokens. Supported by an in-house **ASP.NET Identity mode with RS256 JWT and OIDC/JWKS discovery** enabled via feature flags for vendor independence.
+- **Local JWKS Verification:** Microservices verify tokens locally without calling the identity service on every request, scaling to 10,000+ concurrent sessions.
+- **PII Encryption at Rest:** Sensitive identifiers (phone numbers, email addresses) are encrypted using **AES-256-GCM**. Exact search functionality is maintained via HMAC keyed hashes.
+- **Audit Trails:** Comprehensive consent logs and administrative PII access audit trails guarantee compliance and accountability.
+
+### 2.5 Multi-Tiered Data & Cache Strategy
+- **Relational Core (MySQL):** Structured business data (properties, builders, colonies, transactions, wallets) managed via **Entity Framework Core** for standard operations and **Dapper / ADO.NET Stored Procedures** for high-throughput reporting queries.
+- **Document Store (MongoDB):** 10 collections storing append-heavy chat transcripts, event telemetry, and administrative logs.
+- **Resilient Redis Cache:** Configured with per-entity TTLs (wallet: 2 min, chat sessions: 10 min, property metadata: 45 min) and single-flight stampede protection to prevent thundering herds on popular listings.
+
+---
+
+## 3. The 7 Deployable Applications
+
+| # | Application | Technology | Responsibility |
+| :-: | :--- | :--- | :--- |
+| **1** | **PropEquityAI.Web** | ASP.NET Core / React | The flagship customer-facing AI chat assistant, wallet manager, 17-step onboarding funnel, and real-time dashboard. |
+| **2** | **PropEquityAI.CPanel** | .NET 10 / jqGrid | Internal administrative console with live dependency health probes, billing/refunds, user management, and PII audit inspection. |
+| **3** | **PropEquityAI.Worker** | .NET 10 Background Service | Headless background worker executing ~30 Kafka consumers across 29 topics for asynchronous persistence and data ingestion. |
+| **4** | **Prop.API** | ASP.NET Core Web API | Versioned REST API (v1/v2) with JWT auth and mobile OTP verification for partner and mobile integrations. |
+| **5** | **Auth.Web** | ASP.NET Core / OIDC | Identity frontend managing sign-in, password reset, and multi-factor token issuance. |
+| **6** | **auth-service** | Node.js / SuperTokens | High-throughput identity microservice managing token lifecycles, session revocation, and rate limiting. |
+| **7** | **MCP Gateway** | MCP Server / Python & .NET | Governed Natural-Language-to-SQL translation gateway enforcing database safety and query quotas. |
+
+---
+
+## 4. Key Engineering Metrics & Achievements
+
+- **11 .NET 10 Projects** structured in strict Clean Architecture (*Domain → Application → Infrastructure → App*).
+- **39 Repository Interfaces & 36 Service Contracts** enabling complete database and provider swapability.
+- **10,000+ Concurrent Session** capacity designed through stateless local JWT verification and Redis clustering.
+- **25+ Operational Feature Flags** enabling risk-free zero-downtime releases and instant rollbacks.
+- **Full Commercial Engine:** Integrated Razorpay & CCAvenue gateways, credit wallet billing, automatic PDF invoice rendering, and ClosedXML analytics exports.

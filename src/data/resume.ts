@@ -14,7 +14,7 @@ export const resumeData: ResumeData = {
             "linkedin": "linkedin.com/in/abhishek-visen",
             "portfolio": "abhishekvisen.netlify.app"
         },
-        "summary": "Experienced in React, Node.js, ASP.NET Core, PostgreSQL, Azure, and microservices, building enterprise web platforms used by 10,000+ users and reducing employee onboarding time by three days.",
+        "summary": "Experienced in .NET 10, ASP.NET Core, React, Node.js, Clean Architecture, Apache Kafka, and AI Orchestration (Semantic Kernel, MCP), architecting enterprise market intelligence and workforce platforms handling 500K+ daily requests and 10,000+ concurrent sessions.",
         "notice_period": "Immediate Joiner"
     },
     "skills": {
@@ -33,16 +33,27 @@ export const resumeData: ResumeData = {
             "JavaScript"
         ],
         "backend": [
+            ".NET 10 / ASP.NET Core",
+            "C#",
+            "Clean Architecture",
+            "Semantic Kernel",
+            "Model Context Protocol (MCP)",
+            "Apache Kafka",
+            "Qdrant Vector DB",
+            "Elasticsearch",
             "Node.js",
             "Express.js",
-            "ASP.NET Core",
             "PostgreSQL",
+            "MySQL",
+            "MongoDB",
+            "SuperTokens",
             "Bull MQ",
             "Sequelize ORM",
             "EF Core",
             "Socket.io",
+            "SignalR",
             "PostGIS",
-            "Redis Pub/Sub"
+            "Redis"
         ],
         "testing_and_optimization": [
             "Jest",
@@ -103,6 +114,17 @@ export const resumeData: ResumeData = {
         }
     ],
     "projects": [
+        {
+            "name": "PropEquityAI — AI Real-Estate Intelligence Platform",
+            "duration": "Production Platform",
+            "description": [
+                "Architected a production real-estate market intelligence platform using .NET 10 Clean Architecture and Microsoft Semantic Kernel.",
+                "Implemented a governed Model Context Protocol (MCP) gateway for secure natural-language-to-SQL query generation against curated RERA databases.",
+                "Constructed an event-driven Kafka pipeline managing ~30 consumers across 29 topics for asynchronous persistence and analytics.",
+                "Engineered hybrid AI retrieval coupling Qdrant vector semantic search with Elasticsearch for sub-second, typo-tolerant property lookups.",
+                "Designed dual-mode authentication (SuperTokens microservice + self-hosted RS256 JWT/JWKS) supporting 10,000+ concurrent sessions with AES-256-GCM PII encryption."
+            ]
+        },
         {
             "name": "Enterprise HRMS Platform",
             "duration": "April 2022 - Present",
