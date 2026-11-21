@@ -1,49 +1,66 @@
 @import "tailwindcss";
 
 :root {
-    --bg-color: #FEFDF0; /* Light lemon cream */
-    --text-color: #1E2019; /* Olive-charcoal */
-    --border-color: rgba(45, 48, 35, 0.1); /* Subtle warm border */
+    --bg-color: #F8FAFC;
+    --bg-elevated: #FFFFFF;
+    --text-color: #1E293B;
+    --text-heading: #0F172A;
+    --text-muted: #64748B;
+    --border-color: rgba(15, 23, 42, 0.08);
     --card-bg: #FFFFFF;
-    --card-hover-bg: #FAF9E6; /* Light lemon highlights */
-    --card-border: rgba(45, 48, 35, 0.08);
-    --text-muted: #5C5E54; /* Warm gray-olive */
-    --text-heading: #11120D; /* Near black with olive hint */
+    --card-hover-bg: #F1F5F9;
+    --card-border: rgba(15, 23, 42, 0.08);
+    --card-hover-border: rgba(14, 165, 233, 0.4);
     --badge-bg: rgba(2, 132, 199, 0.08);
-    --badge-text: #025a87;
-    --badge-border: rgba(2, 132, 199, 0.15);
+    --badge-text: #0284C7;
+    --badge-border: rgba(2, 132, 199, 0.2);
+    --primary-accent: #0284C7;
+    --glow-color: rgba(14, 165, 233, 0.15);
 }
 
 .dark {
-    --bg-color: #0B0F14;
-    --text-color: #E5E7EB;
-    --border-color: rgba(255, 255, 255, 0.1);
-    --card-bg: rgba(255, 255, 255, 0.02);
-    --card-hover-bg: rgba(255, 255, 255, 0.04);
-    --card-border: rgba(255, 255, 255, 0.1);
-    --text-muted: #9ca3af;
-    --text-heading: #ffffff;
+    --bg-color: #090D16;
+    --bg-elevated: #0F172A;
+    --text-color: #E2E8F0;
+    --text-heading: #F8FAFC;
+    --text-muted: #94A3B8;
+    --border-color: rgba(255, 255, 255, 0.08);
+    --card-bg: rgba(17, 24, 39, 0.7);
+    --card-hover-bg: rgba(26, 36, 56, 0.85);
+    --card-border: rgba(255, 255, 255, 0.08);
+    --card-hover-border: rgba(56, 189, 248, 0.45);
     --badge-bg: rgba(56, 189, 248, 0.1);
-    --badge-text: #38bdf8;
-    --badge-border: rgba(56, 189, 248, 0.2);
+    --badge-text: #38BDF8;
+    --badge-border: rgba(56, 189, 248, 0.25);
+    --primary-accent: #38BDF8;
+    --glow-color: rgba(56, 189, 248, 0.15);
 }
 
 @theme {
     --color-background: var(--bg-color);
+    --color-background-elevated: var(--bg-elevated);
     --color-foreground: var(--text-color);
     
     --color-border-custom: var(--border-color);
+    --color-card: var(--card-bg);
     --color-card-bg: var(--card-bg);
     --color-card-hover: var(--card-hover-bg);
     --color-card-border: var(--card-border);
+    --color-card-hover-border: var(--card-hover-border);
     --color-text-muted: var(--text-muted);
     --color-text-heading: var(--text-heading);
+    --color-badge: var(--badge-bg);
     --color-badge-bg: var(--badge-bg);
     --color-badge-text: var(--badge-text);
     --color-badge-border: var(--badge-border);
+    --color-accent: var(--primary-accent);
     
+    --font-heading: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-mono: 'Fira Code', monospace;
+
     --animate-gradient-x: gradient-x 6s ease infinite;
-    --animate-pulse-glow: pulse-glow 2s infinite alternate;
+    --animate-pulse-subtle: pulse-subtle 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 
     @keyframes gradient-x {
         0%, 100% {
@@ -55,14 +72,26 @@
             background-position: right center;
         }
     }
-    @keyframes pulse-glow {
-        0% {
-            box-shadow: 0 0 5px rgba(56, 189, 248, 0.2), 0 0 10px rgba(56, 189, 248, 0.1);
+
+    @keyframes pulse-subtle {
+        0%, 100% {
+            opacity: 1;
         }
-        100% {
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.5), 0 0 25px rgba(56, 189, 248, 0.3);
+        50% {
+            opacity: 0.7;
         }
     }
+}
+
+/* Custom Base Styles */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+}
+
+/* Subtle background grid pattern */
+.bg-grid-pattern {
+    background-image: radial-gradient(circle at 1px 1px, var(--border-color) 1px, transparent 0);
+    background-size: 32px 32px;
 }
 
 @layer components {
@@ -71,23 +100,45 @@
         background-size: 200% auto;
         animation: var(--animate-gradient-x);
     }
+
+    .bento-card {
+        background-color: var(--card-bg);
+        border: 1px solid var(--card-border);
+        transition: all 250ms cubic-bezier(0.16, 1, 0.3, 1);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+    }
+
+    .bento-card:hover {
+        background-color: var(--card-hover-bg);
+        border-color: var(--card-hover-border);
+        transform: translateY(-2px);
+        box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.15);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }
 
 @media print {
     body {
-        background-color: white;
-        color: black;
+        background-color: white !important;
+        color: black !important;
     }
 
-    /* Hide Navigation and Footer */
     nav,
     footer {
         display: none !important;
     }
 
-    /* Resume specific print resets */
     @page {
-        margin: 0;
+        margin: 1cm;
         size: auto;
     }
 }

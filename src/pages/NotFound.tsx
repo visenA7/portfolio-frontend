@@ -1,18 +1,27 @@
 import { Container } from "../components/layout/Container";
 import { Link } from "react-router-dom";
+import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 
 export const NotFound = () => {
     return (
-        <section className="py-20 md:py-32 text-center">
+        <section className="py-24 sm:py-36 text-center">
             <Container>
-                <h1 className="text-5xl md:text-6xl font-bold text-white mb-3 md:mb-4">404</h1>
-                <p className="text-lg md:text-xl text-gray-400 mb-6 md:mb-8">Page not found</p>
-                <Link
-                    to="/"
-                    className="px-6 py-3 min-h-[44px] rounded-lg bg-gradient-to-r from-sky-500 to-blue-600 text-white font-bold shadow-lg shadow-sky-500/20 hover:shadow-sky-500/40 hover:-translate-y-0.5 transition-all text-sm uppercase tracking-wide inline-flex items-center justify-center"
-                >
-                    Go Back Home
-                </Link>
+                <div className="max-w-md mx-auto bento-card rounded-3xl p-8 sm:p-12 border border-card-border shadow-xl">
+                    <span className="text-xs font-mono font-bold text-sky-500 uppercase tracking-widest px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/20 inline-block mb-4">
+                        404 ERROR
+                    </span>
+                    <h1 className="text-6xl font-extrabold text-text-heading tracking-tight mb-3">404</h1>
+                    <p className="text-lg text-text-muted mb-8 leading-relaxed">
+                        The requested engineering document or route does not exist.
+                    </p>
+                    <Link
+                        to="/"
+                        className="px-6 py-3.5 min-h-[44px] rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-bold shadow-md shadow-sky-600/20 hover:shadow-sky-500/30 transition-all text-sm inline-flex items-center justify-center gap-2 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500"
+                    >
+                        <ArrowLeftIcon className="w-4 h-4" aria-hidden="true" />
+                        <span>Return to Home</span>
+                    </Link>
+                </div>
             </Container>
         </section>
     );

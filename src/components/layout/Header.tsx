@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { Bars3Icon, XMarkIcon, SunIcon, MoonIcon } from "@heroicons/react/24/outline";
+import { NavLink, Link } from "react-router-dom";
+import { Bars3Icon, XMarkIcon, SunIcon, MoonIcon, ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
 
 const navLinks = [
     { href: "/", label: "Home" },
-    { href: "/systems", label: "Systems" },
+    { href: "/systems", label: "Systems Architecture" },
     { href: "/frontend", label: "Frontend" },
-    { href: "/notes", label: "Notes" },
     { href: "/projects", label: "Projects" },
+    { href: "/notes", label: "Engineering Notes" },
     { href: "/resume", label: "Resume" },
 ];
 
@@ -19,34 +20,62 @@ export const Header = ({ theme, toggleTheme }: HeaderProps) => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <header className="border-b border-border-custom bg-background transition-colors duration-300">
-            <nav className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
-                <a href="/" className="font-mono text-sm font-bold text-text-heading hover:text-sky-500 transition-colors">
-                    abhishekvisen.dev
-                </a>
+        <header className="sticky top-0 z-50 border-b border-border-custom bg-background/85 backdrop-blur-md transition-colors duration-200">
+            <nav className="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex justify-between items-center" aria-label="Main navigation">
+                {/* Brand / Logo */}
+                <Link 
+                    to="/" 
+                    className="flex items-center gap-2.5 font-mono text-sm font-bold text-text-heading hover:text-sky-500 transition-colors group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 rounded-md px-1 py-0.5"
+                >
+                    <span className="relative flex h-2.5 w-2.5" title="Available for opportunities">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                    </span>
+                    <span className="tracking-tight font-heading text-base group-hover:text-sky-500 transition-colors">
+                        abhishekvisen<span className="text-sky-500">.dev</span>
+                    </span>
+                </Link>
 
                 {/* Desktop Navigation */}
-                <div className="hidden md:flex items-center gap-6 text-sm">
+                <div className="hidden md:flex items-center gap-1.5 text-sm font-medium">
                     {navLinks.map((link) => (
-                        <a
+                        <NavLink
                             key={link.href}
-                            href={link.href}
-                            className="text-text-muted hover:text-sky-500 transition-colors font-medium"
+                            to={link.href}
+                            end={link.href === "/"}
+                            className={({ isActive }) =>
+                                `px-3.5 py-1.5 rounded-lg transition-all duration-150 cursor-pointer text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 ${
+                                    isActive
+                                        ? "bg-badge text-badge-text font-semibold border border-badge-border shadow-xs"
+                                        : "text-text-muted hover:text-text-heading hover:bg-card-hover"
+                                }`
+                            }
                         >
                             {link.label}
-                        </a>
+                        </NavLink>
                     ))}
-                    
+
+                    <div className="h-4 w-[1px] bg-border-custom mx-1.5" />
+
+                    {/* Quick Contact Link */}
+                    <a
+                        href="mailto:abhishekvisen7@gmail.com"
+                        className="px-3 py-1.5 rounded-lg text-xs font-mono font-medium text-text-muted hover:text-sky-500 transition-colors flex items-center gap-1 hover:bg-card-hover focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:outline-none cursor-pointer"
+                    >
+                        <span>Contact</span>
+                        <ArrowTopRightOnSquareIcon className="w-3.5 h-3.5" aria-hidden="true" />
+                    </a>
+
                     {/* Theme Toggle Button Desktop */}
                     <button
                         onClick={toggleTheme}
-                        className="p-2 ml-2 rounded-lg bg-card border border-border-custom text-text-muted hover:text-sky-500 transition-all shadow-sm hover:scale-105 min-h-[38px] min-w-[38px] flex items-center justify-center cursor-pointer"
-                        aria-label="Toggle theme"
+                        className="p-2 ml-1 rounded-lg bg-card border border-border-custom text-text-muted hover:text-sky-500 hover:border-sky-500/30 transition-all shadow-xs hover:scale-105 min-h-[38px] min-w-[38px] flex items-center justify-center cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500"
+                        aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
                     >
                         {theme === "light" ? (
-                            <MoonIcon className="w-5 h-5" />
+                            <MoonIcon className="w-4 h-4" aria-hidden="true" />
                         ) : (
-                            <SunIcon className="w-5 h-5 text-yellow-400" />
+                            <SunIcon className="w-4 h-4 text-amber-400" aria-hidden="true" />
                         )}
                     </button>
                 </div>
@@ -56,27 +85,27 @@ export const Header = ({ theme, toggleTheme }: HeaderProps) => {
                     {/* Theme Toggle Button Mobile */}
                     <button
                         onClick={toggleTheme}
-                        className="p-2 rounded-lg bg-card border border-border-custom text-text-muted hover:text-sky-500 transition-all shadow-sm min-h-[40px] min-w-[40px] flex items-center justify-center cursor-pointer"
-                        aria-label="Toggle theme"
+                        className="p-2 rounded-lg bg-card border border-border-custom text-text-muted hover:text-sky-500 transition-all shadow-xs min-h-[44px] min-w-[44px] flex items-center justify-center cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500"
+                        aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
                     >
                         {theme === "light" ? (
-                            <MoonIcon className="w-5 h-5" />
+                            <MoonIcon className="w-5 h-5" aria-hidden="true" />
                         ) : (
-                            <SunIcon className="w-5 h-5 text-yellow-400" />
+                            <SunIcon className="w-5 h-5 text-amber-400" aria-hidden="true" />
                         )}
                     </button>
 
                     {/* Mobile Menu Button */}
                     <button
                         onClick={() => setIsOpen(!isOpen)}
-                        className="p-2 min-h-[40px] min-w-[40px] flex items-center justify-center text-text-muted hover:text-sky-500 transition-colors cursor-pointer"
+                        className="p-2 min-h-[44px] min-w-[44px] rounded-lg border border-border-custom bg-card flex items-center justify-center text-text-muted hover:text-sky-500 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500"
                         aria-label={isOpen ? "Close menu" : "Open menu"}
                         aria-expanded={isOpen}
                     >
                         {isOpen ? (
-                            <XMarkIcon className="w-6 h-6" />
+                            <XMarkIcon className="w-6 h-6" aria-hidden="true" />
                         ) : (
-                            <Bars3Icon className="w-6 h-6" />
+                            <Bars3Icon className="w-6 h-6" aria-hidden="true" />
                         )}
                     </button>
                 </div>
@@ -84,18 +113,36 @@ export const Header = ({ theme, toggleTheme }: HeaderProps) => {
 
             {/* Mobile Navigation Menu */}
             {isOpen && (
-                <div className="md:hidden border-t border-border-custom bg-background transition-colors duration-300">
-                    <div className="px-4 py-4 space-y-1">
+                <div className="md:hidden border-t border-border-custom bg-background/95 backdrop-blur-lg transition-all duration-200">
+                    <div className="px-4 py-4 space-y-1.5">
                         {navLinks.map((link) => (
-                            <a
+                            <NavLink
                                 key={link.href}
-                                href={link.href}
-                                className="block py-3 px-4 text-base font-medium text-text-muted hover:text-sky-500 hover:bg-card-hover rounded-lg transition-colors min-h-[44px] flex items-center"
+                                to={link.href}
+                                end={link.href === "/"}
+                                className={({ isActive }) =>
+                                    `block py-2.5 px-4 text-base font-medium rounded-lg transition-colors min-h-[44px] flex items-center cursor-pointer ${
+                                        isActive
+                                            ? "bg-badge text-badge-text font-semibold border border-badge-border"
+                                            : "text-text-muted hover:text-sky-500 hover:bg-card-hover"
+                                    }`
+                                }
                                 onClick={() => setIsOpen(false)}
                             >
                                 {link.label}
-                            </a>
+                            </NavLink>
                         ))}
+
+                        <div className="pt-2 border-t border-border-custom mt-2">
+                            <a
+                                href="mailto:abhishekvisen7@gmail.com"
+                                className="block py-2.5 px-4 text-sm font-mono text-sky-500 hover:bg-card-hover rounded-lg min-h-[44px] flex items-center gap-2 cursor-pointer"
+                                onClick={() => setIsOpen(false)}
+                            >
+                                <span>abhishekvisen7@gmail.com</span>
+                                <ArrowTopRightOnSquareIcon className="w-4 h-4" aria-hidden="true" />
+                            </a>
+                        </div>
                     </div>
                 </div>
             )}

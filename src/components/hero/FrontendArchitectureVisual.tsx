@@ -1,12 +1,9 @@
 import { MermaidDiagram } from "../common/MermaidDiagram";
-import { frontendDiagram } from "../hero/frontend.mmd";
+import { frontendDiagram } from "./frontend.mmd";
 
 export const FrontendArchitectureVisual = () => {
     return (
-        <div>
-            <h3 className="text-sm font-mono text-gray-400 mb-3">
-                Frontend Architecture
-            </h3>
+        <div className="w-full">
             <MermaidDiagram code={frontendDiagram} />
         </div>
     );
