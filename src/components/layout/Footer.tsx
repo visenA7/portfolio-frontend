@@ -37,15 +37,6 @@ export const Footer = () => {
                     >
                         Portfolio
                     </a>
-                    <span className="text-border-custom font-light">|</span>
-                    <a 
-                        href="/claude.zip" 
-                        download="claude.zip"
-                        className="text-text-muted hover:text-sky-500 transition-colors font-medium flex items-center gap-1"
-                        title="Download Claude Tools & Skills Bundle (.zip)"
-                    >
-                        Tools (.zip) ↓
-                    </a>
                 </div>
             </div>
         </footer>

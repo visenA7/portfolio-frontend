@@ -44,22 +44,6 @@ const projects = [
         ],
         link: "#",
         linkText: "Internal System"
-    },
-    {
-        title: "Claude Tools & AI Skills Package",
-        role: "AI & Developer Tooling",
-        timeline: "Direct Download · 24 MB",
-        description: "A curated suite of productivity tools, intelligent agent skills, and workflow automations built for Claude. Hosted directly on this portfolio for instant download.",
-        tech: ["Claude Skills", "Graphify v8", "Superpowers", "UI/UX Pro Max", "Cloud Automation", "Agent Tooling"],
-        features: [
-            "Graphify (v8): Transforms codebases and architectural documents into queryable knowledge graphs",
-            "UI/UX Pro Max: Design system intelligence and frontend component generation skills",
-            "Superpowers & Skills: Deep agent workflow orchestration, automated test running, and code tools",
-            "OCI VPS Hunter: Automated cloud resource detection and provisioning assistant"
-        ],
-        link: "/claude.zip",
-        linkText: "Download Tools (.zip) ↓",
-        download: "claude.zip"
     }
 ];
 
@@ -136,8 +120,7 @@ export const Projects = () => {
                                     {project.link !== "#" ? (
                                         <a
                                             href={project.link}
-                                            download={project.download}
-                                            className="px-4 py-2 bg-sky-600 hover:bg-sky-500 text-white rounded-lg font-bold text-sm transition-all shadow-lg hover:shadow-sky-500/20 cursor-pointer flex items-center justify-center gap-2"
+                                            className="px-4 py-2 bg-sky-600 hover:bg-sky-500 text-white rounded-lg font-bold text-sm transition-all shadow-lg hover:shadow-sky-500/20 cursor-pointer"
                                         >
                                             {project.linkText}
                                         </a>
