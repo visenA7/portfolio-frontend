@@ -17,9 +17,6 @@ const projects = [
         role: "Senior Full Stack Engineer",
         timeline: "April 2022 - Present",
         icon: ServerStackIcon,
-        color: "text-sky-500",
-        bg: "bg-sky-500/10",
-        border: "border-sky-500/20",
         description: "Pioneered a multi-tenant HRMS platform managing the workforce lifecycle of 15,000+ employees. Built to replace legacy desktop software with a secure, highly scalable cloud solution.",
         tech: ["React.js", "Node.js", "ASP.NET Core", "Microservices", "Python", "PostgreSQL", "Redis", "Sequelize/Drizzle", "JWT/OAuth2"],
         features: [
@@ -37,9 +34,6 @@ const projects = [
         role: "Full Stack Developer",
         timeline: "Side Project → Production",
         icon: ChatBubbleLeftRightIcon,
-        color: "text-indigo-500",
-        bg: "bg-indigo-500/10",
-        border: "border-indigo-500/20",
         description: "Engineered a WebSocket messaging and AI assistant system, integrated directly into the main HRMS to facilitate internal communications and policy queries.",
         tech: ["React.js", "Node.js", "Socket.io", "Redis Pub/Sub", "PostgreSQL", "OpenAI", "LangChain", "React Native"],
         features: [
@@ -57,9 +51,6 @@ const projects = [
         role: "Full Stack Developer",
         timeline: "1 Year Engagement",
         icon: MapIcon,
-        color: "text-emerald-500",
-        bg: "bg-emerald-500/10",
-        border: "border-emerald-500/20",
         description: "A geospatial information system / digital twin designed for DBVHNL to map and manage electrical infrastructure assets overlaid on interactive geographical maps.",
         tech: ["Leaflet", "CesiumJS", "PostGIS", "PostgreSQL", "Node.js", "Redis", "Socket.io"],
         features: [
@@ -75,10 +66,6 @@ const projects = [
 export const Projects = () => {
     return (
         <section className="py-12 md:py-20 relative overflow-hidden transition-colors duration-200">
-            {/* Ambient background glows */}
-            <div className="absolute top-10 left-10 w-96 h-96 bg-sky-500/5 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl pointer-events-none" />
-
             <Container>
                 {/* Header */}
                 <div className="mb-12 md:mb-16 max-w-3xl">
@@ -107,8 +94,8 @@ export const Projects = () => {
                                     <div className="flex-1">
                                         {/* Meta Bar */}
                                         <div className="flex flex-wrap items-center gap-3 mb-4">
-                                            <div className={`p-2 rounded-xl ${project.bg} ${project.border} border`}>
-                                                <Icon className={`w-5 h-5 ${project.color}`} aria-hidden="true" />
+                                            <div className="p-2 rounded-xl bg-card-hover border border-border-custom text-text-heading">
+                                                <Icon className="w-5 h-5" aria-hidden="true" />
                                             </div>
                                             <span className="px-3 py-1 bg-badge text-badge-text rounded-full text-xs font-mono font-semibold border border-badge-border flex items-center gap-1.5">
                                                 <UserIcon className="w-3.5 h-3.5" aria-hidden="true" />
@@ -120,7 +107,7 @@ export const Projects = () => {
                                             </span>
                                         </div>
 
-                                        <h2 className="text-2xl sm:text-3xl font-extrabold text-text-heading tracking-tight group-hover:text-sky-500 transition-colors">
+                                        <h2 className="text-2xl sm:text-3xl font-extrabold text-text-heading tracking-tight">
                                             {project.title}
                                         </h2>
 
@@ -129,14 +116,14 @@ export const Projects = () => {
                                         </p>
 
                                         {/* Features & Architectural Impact */}
-                                        <div className="mt-6 pt-5 border-t border-border-custom/80">
-                                            <h3 className="text-xs font-mono font-bold uppercase tracking-widest text-sky-600 dark:text-sky-400 mb-3.5">
+                                        <div className="mt-6 pt-5 border-t border-border-custom">
+                                            <h3 className="text-xs font-mono font-bold uppercase tracking-widest text-text-muted mb-3.5">
                                                 Key Architecture & Production Impact
                                             </h3>
                                             <ul className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
                                                 {project.features.map((f) => (
                                                     <li key={f} className="flex items-start gap-2.5 text-xs sm:text-sm text-text-muted">
-                                                        <CheckCircleIcon className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" aria-hidden="true" />
+                                                        <CheckCircleIcon className="w-4 h-4 text-emerald-700 dark:text-emerald-400 shrink-0 mt-0.5" aria-hidden="true" />
                                                         <span>{f}</span>
                                                     </li>
                                                 ))}
@@ -144,7 +131,7 @@ export const Projects = () => {
                                         </div>
 
                                         {/* Tech Stack Chips */}
-                                        <div className="mt-6 pt-5 border-t border-border-custom/80 flex flex-wrap gap-1.5">
+                                        <div className="mt-6 pt-5 border-t border-border-custom flex flex-wrap gap-1.5">
                                             {project.tech.map((t) => (
                                                 <span
                                                     key={t}
@@ -161,7 +148,7 @@ export const Projects = () => {
                                 <div className="mt-8 pt-4 border-t border-border-custom flex items-center justify-between">
                                     <Link
                                         to={project.link}
-                                        className="inline-flex items-center gap-2 text-sm font-bold text-sky-600 dark:text-sky-400 group-hover:text-sky-500 transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 py-1"
+                                        className="inline-flex items-center gap-2 text-sm font-bold text-text-heading hover:opacity-75 transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 py-1"
                                     >
                                         <span>{project.linkText}</span>
                                         <ArrowRightIcon className="w-4 h-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />

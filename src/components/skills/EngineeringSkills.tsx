@@ -5,16 +5,12 @@ import {
     ComputerDesktopIcon,
     CpuChipIcon,
     CloudIcon,
-    SparklesIcon
 } from "@heroicons/react/24/outline";
 
 const skillClusters = [
     {
         category: "Backend & Distributed Systems",
         icon: ServerStackIcon,
-        color: "text-sky-500",
-        bg: "bg-sky-500/10",
-        border: "border-sky-500/20",
         skills: [
             { name: "ASP.NET Core", detail: "Clean Architecture, Web API, C#" },
             { name: "Node.js & Express", detail: "Event Loop, Clustering, Async Hooks" },
@@ -27,9 +23,6 @@ const skillClusters = [
     {
         category: "Frontend & Performance",
         icon: ComputerDesktopIcon,
-        color: "text-indigo-500",
-        bg: "bg-indigo-500/10",
-        border: "border-indigo-500/20",
         skills: [
             { name: "React 19 & TypeScript", detail: "Hooks, Concurrent Features, Suspense" },
             { name: "State Architecture", detail: "Zustand, React Query, Redux Toolkit" },
@@ -42,9 +35,6 @@ const skillClusters = [
     {
         category: "Architecture & Resilience",
         icon: CpuChipIcon,
-        color: "text-purple-500",
-        bg: "bg-purple-500/10",
-        border: "border-purple-500/20",
         skills: [
             { name: "High Availability", detail: "Fault-tolerant services, Circuit Breakers" },
             { name: "Rate Limiting & Throttling", detail: "Token Bucket, Sliding Window via Redis" },
@@ -55,9 +45,6 @@ const skillClusters = [
     {
         category: "Cloud, CI/CD & AI Tooling",
         icon: CloudIcon,
-        color: "text-emerald-500",
-        bg: "bg-emerald-500/10",
-        border: "border-emerald-500/20",
         skills: [
             { name: "Azure & Linux Servers", detail: "Azure App Service, PostgreSQL Flexible, VMs" },
             { name: "Docker & Containerization", detail: "Multi-stage builds, Container Registries" },
@@ -86,11 +73,11 @@ export const EngineeringSkills = () => (
                         >
                             <div>
                                 <div className="flex items-center gap-3 mb-6 pb-4 border-b border-border-custom">
-                                    <div className={`p-2.5 rounded-xl ${cluster.bg} ${cluster.border} border`}>
-                                        <Icon className={`w-5 h-5 ${cluster.color}`} aria-hidden="true" />
+                                    <div className="p-2.5 rounded-xl bg-card-hover border border-border-custom text-text-heading">
+                                        <Icon className="w-5 h-5" aria-hidden="true" />
                                     </div>
                                     <div>
-                                        <h3 className="text-lg font-bold text-text-heading group-hover:text-sky-500 transition-colors">
+                                        <h3 className="text-lg font-bold text-text-heading">
                                             {cluster.category}
                                         </h3>
                                         <span className="text-xs font-mono text-text-muted">
@@ -103,10 +90,10 @@ export const EngineeringSkills = () => (
                                     {cluster.skills.map((s) => (
                                         <div
                                             key={s.name}
-                                            className="p-2.5 rounded-xl bg-card-hover/60 border border-border-custom/80 flex flex-col sm:flex-row sm:items-center justify-between gap-1 hover:border-sky-500/30 transition-colors"
+                                            className="p-2.5 rounded-xl bg-card-hover/60 border border-border-custom flex flex-col sm:flex-row sm:items-center justify-between gap-1 hover:border-card-hover-border transition-colors"
                                         >
                                             <div className="flex items-center gap-2">
-                                                <SparklesIcon className="w-3.5 h-3.5 text-sky-500 shrink-0" aria-hidden="true" />
+                                                <span className="w-1.5 h-1.5 rounded-full bg-neutral-400 dark:bg-neutral-600 shrink-0" />
                                                 <span className="text-sm font-semibold text-text-heading font-mono">
                                                     {s.name}
                                                 </span>

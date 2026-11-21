@@ -20,19 +20,19 @@ export const Header = ({ theme, toggleTheme }: HeaderProps) => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <header className="sticky top-0 z-50 border-b border-border-custom bg-background/85 backdrop-blur-md transition-colors duration-200">
+        <header className="sticky top-0 z-50 border-b border-border-custom bg-background/90 backdrop-blur-md transition-colors duration-200">
             <nav className="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex justify-between items-center" aria-label="Main navigation">
                 {/* Brand / Logo */}
                 <Link 
                     to="/" 
-                    className="flex items-center gap-2.5 font-mono text-sm font-bold text-text-heading hover:text-sky-500 transition-colors group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 rounded-md px-1 py-0.5"
+                    className="flex items-center gap-2.5 font-mono text-sm font-bold text-text-heading hover:opacity-80 transition-opacity group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 rounded-md px-1 py-0.5"
                 >
-                    <span className="relative flex h-2.5 w-2.5" title="Available for opportunities">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                    <span className="relative flex h-2 w-2" title="Available for opportunities">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600 dark:bg-emerald-400"></span>
                     </span>
-                    <span className="tracking-tight font-heading text-base group-hover:text-sky-500 transition-colors">
-                        abhishekvisen<span className="text-sky-500">.dev</span>
+                    <span className="tracking-tight font-heading text-base text-text-heading">
+                        abhishekvisen<span className="text-text-muted">.dev</span>
                     </span>
                 </Link>
 
@@ -44,7 +44,7 @@ export const Header = ({ theme, toggleTheme }: HeaderProps) => {
                             to={link.href}
                             end={link.href === "/"}
                             className={({ isActive }) =>
-                                `px-3.5 py-1.5 rounded-lg transition-all duration-150 cursor-pointer text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 ${
+                                `px-3.5 py-1.5 rounded-lg transition-all duration-150 cursor-pointer text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 ${
                                     isActive
                                         ? "bg-badge text-badge-text font-semibold border border-badge-border shadow-xs"
                                         : "text-text-muted hover:text-text-heading hover:bg-card-hover"
@@ -60,7 +60,7 @@ export const Header = ({ theme, toggleTheme }: HeaderProps) => {
                     {/* Quick Contact Link */}
                     <a
                         href="mailto:abhishekvisen7@gmail.com"
-                        className="px-3 py-1.5 rounded-lg text-xs font-mono font-medium text-text-muted hover:text-sky-500 transition-colors flex items-center gap-1 hover:bg-card-hover focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:outline-none cursor-pointer"
+                        className="px-3 py-1.5 rounded-lg text-xs font-mono font-medium text-text-muted hover:text-text-heading hover:bg-card-hover transition-colors flex items-center gap-1 focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:outline-none cursor-pointer"
                     >
                         <span>Contact</span>
                         <ArrowTopRightOnSquareIcon className="w-3.5 h-3.5" aria-hidden="true" />
@@ -69,7 +69,7 @@ export const Header = ({ theme, toggleTheme }: HeaderProps) => {
                     {/* Theme Toggle Button Desktop */}
                     <button
                         onClick={toggleTheme}
-                        className="p-2 ml-1 rounded-lg bg-card border border-border-custom text-text-muted hover:text-sky-500 hover:border-sky-500/30 transition-all shadow-xs hover:scale-105 min-h-[38px] min-w-[38px] flex items-center justify-center cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500"
+                        className="p-2 ml-1 rounded-lg bg-card border border-border-custom text-text-muted hover:text-text-heading hover:border-card-hover-border transition-all shadow-xs min-h-[38px] min-w-[38px] flex items-center justify-center cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400"
                         aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
                     >
                         {theme === "light" ? (
@@ -85,7 +85,7 @@ export const Header = ({ theme, toggleTheme }: HeaderProps) => {
                     {/* Theme Toggle Button Mobile */}
                     <button
                         onClick={toggleTheme}
-                        className="p-2 rounded-lg bg-card border border-border-custom text-text-muted hover:text-sky-500 transition-all shadow-xs min-h-[44px] min-w-[44px] flex items-center justify-center cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500"
+                        className="p-2 rounded-lg bg-card border border-border-custom text-text-muted hover:text-text-heading transition-all shadow-xs min-h-[44px] min-w-[44px] flex items-center justify-center cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400"
                         aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
                     >
                         {theme === "light" ? (
@@ -98,7 +98,7 @@ export const Header = ({ theme, toggleTheme }: HeaderProps) => {
                     {/* Mobile Menu Button */}
                     <button
                         onClick={() => setIsOpen(!isOpen)}
-                        className="p-2 min-h-[44px] min-w-[44px] rounded-lg border border-border-custom bg-card flex items-center justify-center text-text-muted hover:text-sky-500 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500"
+                        className="p-2 min-h-[44px] min-w-[44px] rounded-lg border border-border-custom bg-card flex items-center justify-center text-text-muted hover:text-text-heading transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400"
                         aria-label={isOpen ? "Close menu" : "Open menu"}
                         aria-expanded={isOpen}
                     >
@@ -124,7 +124,7 @@ export const Header = ({ theme, toggleTheme }: HeaderProps) => {
                                     `block py-2.5 px-4 text-base font-medium rounded-lg transition-colors min-h-[44px] flex items-center cursor-pointer ${
                                         isActive
                                             ? "bg-badge text-badge-text font-semibold border border-badge-border"
-                                            : "text-text-muted hover:text-sky-500 hover:bg-card-hover"
+                                            : "text-text-muted hover:text-text-heading hover:bg-card-hover"
                                     }`
                                 }
                                 onClick={() => setIsOpen(false)}
@@ -136,7 +136,7 @@ export const Header = ({ theme, toggleTheme }: HeaderProps) => {
                         <div className="pt-2 border-t border-border-custom mt-2">
                             <a
                                 href="mailto:abhishekvisen7@gmail.com"
-                                className="block py-2.5 px-4 text-sm font-mono text-sky-500 hover:bg-card-hover rounded-lg min-h-[44px] flex items-center gap-2 cursor-pointer"
+                                className="block py-2.5 px-4 text-sm font-mono text-text-heading hover:bg-card-hover rounded-lg min-h-[44px] flex items-center gap-2 cursor-pointer"
                                 onClick={() => setIsOpen(false)}
                             >
                                 <span>abhishekvisen7@gmail.com</span>

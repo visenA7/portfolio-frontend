@@ -1,39 +1,41 @@
 @import "tailwindcss";
 
 :root {
-    --bg-color: #F8FAFC;
+    --bg-color: #FBFBFA;
     --bg-elevated: #FFFFFF;
-    --text-color: #1E293B;
-    --text-heading: #0F172A;
-    --text-muted: #64748B;
-    --border-color: rgba(15, 23, 42, 0.08);
+    --text-color: #27282D;
+    --text-heading: #111215;
+    --text-muted: #5C606A;
+    --border-color: #E6E6E3;
     --card-bg: #FFFFFF;
-    --card-hover-bg: #F1F5F9;
-    --card-border: rgba(15, 23, 42, 0.08);
-    --card-hover-border: rgba(14, 165, 233, 0.4);
-    --badge-bg: rgba(2, 132, 199, 0.08);
-    --badge-text: #0284C7;
-    --badge-border: rgba(2, 132, 199, 0.2);
-    --primary-accent: #0284C7;
-    --glow-color: rgba(14, 165, 233, 0.15);
+    --card-hover-bg: #F4F4F1;
+    --card-border: #E6E6E3;
+    --card-hover-border: #B8B8B2;
+    --badge-bg: rgba(24, 24, 27, 0.05);
+    --badge-text: #18181B;
+    --badge-border: rgba(24, 24, 27, 0.12);
+    --primary-accent: #18181B;
+    --accent-emerald: #047857;
+    --accent-amber: #B45309;
 }
 
 .dark {
-    --bg-color: #090D16;
-    --bg-elevated: #0F172A;
-    --text-color: #E2E8F0;
-    --text-heading: #F8FAFC;
-    --text-muted: #94A3B8;
+    --bg-color: #0D0E11;
+    --bg-elevated: #13151A;
+    --text-color: #DFE0E5;
+    --text-heading: #F5F5F7;
+    --text-muted: #8E929E;
     --border-color: rgba(255, 255, 255, 0.08);
-    --card-bg: rgba(17, 24, 39, 0.7);
-    --card-hover-bg: rgba(26, 36, 56, 0.85);
+    --card-bg: #14161C;
+    --card-hover-bg: #1B1E26;
     --card-border: rgba(255, 255, 255, 0.08);
-    --card-hover-border: rgba(56, 189, 248, 0.45);
-    --badge-bg: rgba(56, 189, 248, 0.1);
-    --badge-text: #38BDF8;
-    --badge-border: rgba(56, 189, 248, 0.25);
-    --primary-accent: #38BDF8;
-    --glow-color: rgba(56, 189, 248, 0.15);
+    --card-hover-border: rgba(255, 255, 255, 0.22);
+    --badge-bg: rgba(255, 255, 255, 0.06);
+    --badge-text: #E5E7EB;
+    --badge-border: rgba(255, 255, 255, 0.15);
+    --primary-accent: #FFFFFF;
+    --accent-emerald: #10B981;
+    --accent-amber: #F59E0B;
 }
 
 @theme {
@@ -54,12 +56,14 @@
     --color-badge-text: var(--badge-text);
     --color-badge-border: var(--badge-border);
     --color-accent: var(--primary-accent);
+    --color-accent-emerald: var(--accent-emerald);
+    --color-accent-amber: var(--accent-amber);
     
     --font-heading: 'Space Grotesk', system-ui, -apple-system, sans-serif;
     --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
     --font-mono: 'Fira Code', monospace;
 
-    --animate-gradient-x: gradient-x 6s ease infinite;
+    --animate-gradient-x: gradient-x 8s ease infinite;
     --animate-pulse-subtle: pulse-subtle 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 
     @keyframes gradient-x {
@@ -88,32 +92,37 @@ h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
 }
 
-/* Subtle background grid pattern */
+/* Subtle background grid pattern with warm neutral dots */
 .bg-grid-pattern {
     background-image: radial-gradient(circle at 1px 1px, var(--border-color) 1px, transparent 0);
     background-size: 32px 32px;
 }
 
 @layer components {
-    .bg-gradient-animate {
-        background: linear-gradient(to right, #38bdf8, #818cf8, #a78bfa, #38bdf8);
-        background-size: 200% auto;
-        animation: var(--animate-gradient-x);
+    /* Executive metallic/graphite sheen instead of generic neon rainbow */
+    .bg-metallic-text {
+        background: linear-gradient(135deg, #111215 0%, #4B5563 100%);
+    }
+
+    .dark .bg-metallic-text {
+        background: linear-gradient(135deg, #FFFFFF 0%, #A1A1AA 100%);
     }
 
     .bento-card {
         background-color: var(--card-bg);
         border: 1px solid var(--card-border);
-        transition: all 250ms cubic-bezier(0.16, 1, 0.3, 1);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
+        transition: all 220ms cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .bento-card:hover {
         background-color: var(--card-hover-bg);
         border-color: var(--card-hover-border);
         transform: translateY(-2px);
-        box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.08);
+    }
+
+    .dark .bento-card:hover {
+        box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.4);
     }
 }
 

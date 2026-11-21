@@ -17,7 +17,7 @@ export const Button = ({
     className = "",
     ...props
 }: ButtonProps) => {
-    const base = "inline-flex items-center justify-center font-medium rounded-xl transition-all duration-200 cursor-pointer min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2 active:scale-98 disabled:opacity-50 disabled:pointer-events-none";
+    const base = "inline-flex items-center justify-center font-medium rounded-xl transition-all duration-200 cursor-pointer min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-2 active:scale-98 disabled:opacity-50 disabled:pointer-events-none";
 
     const sizes = {
         sm: "text-xs px-3.5 py-2 gap-1.5",
@@ -26,9 +26,9 @@ export const Button = ({
     };
 
     const variants = {
-        primary: "bg-sky-600 hover:bg-sky-500 text-white shadow-md shadow-sky-600/20 hover:shadow-sky-500/30",
-        secondary: "bg-card border border-border-custom text-text-heading hover:bg-card-hover hover:border-sky-500/40 shadow-xs",
-        outline: "border border-border-custom text-text-heading hover:border-sky-500 hover:text-sky-500 bg-transparent",
+        primary: "bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-white dark:text-neutral-950 dark:hover:bg-neutral-200 shadow-sm",
+        secondary: "bg-card border border-border-custom text-text-heading hover:bg-card-hover hover:border-neutral-400/50 shadow-xs",
+        outline: "border border-border-custom text-text-heading hover:border-neutral-500 hover:text-text-heading bg-transparent",
         ghost: "text-text-muted hover:text-text-heading hover:bg-card-hover",
     };
 

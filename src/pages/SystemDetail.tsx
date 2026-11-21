@@ -40,7 +40,7 @@ export const SystemDetail = () => {
             <div className="mb-6">
                 <Link
                     to="/systems"
-                    className="inline-flex items-center gap-2 text-xs sm:text-sm font-mono font-medium text-text-muted hover:text-sky-500 transition-colors py-1 px-2 rounded-md hover:bg-card-hover cursor-pointer"
+                    className="inline-flex items-center gap-2 text-xs sm:text-sm font-mono font-medium text-text-muted hover:text-text-heading transition-colors py-1 px-2 rounded-md hover:bg-card-hover cursor-pointer"
                 >
                     <ArrowLeftIcon className="w-4 h-4" aria-hidden="true" />
                     <span>Back to Systems</span>
@@ -50,10 +50,10 @@ export const SystemDetail = () => {
             {/* Header */}
             <header className="mb-8 md:mb-12 border-b border-border-custom pb-6 md:pb-8">
                 <div className="flex items-center gap-2 mb-3">
-                    <span className="p-1.5 rounded-lg bg-sky-500/10 text-sky-500 border border-sky-500/20">
+                    <span className="p-1.5 rounded-lg bg-card-hover text-text-heading border border-border-custom">
                         <ServerStackIcon className="w-4 h-4" aria-hidden="true" />
                     </span>
-                    <span className="text-sky-600 dark:text-sky-400 font-semibold font-mono text-xs uppercase tracking-wider">
+                    <span className="text-text-muted font-semibold font-mono text-xs uppercase tracking-wider">
                         Production Architecture Deep Dive
                     </span>
                 </div>
@@ -78,7 +78,7 @@ export const SystemDetail = () => {
             {/* Markdown Body */}
             {loading ? (
                 <div className="py-20 flex justify-center items-center">
-                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-sky-500"></div>
+                    <div className="animate-spin rounded-full h-8 w-8 border-2 border-neutral-400 border-t-transparent"></div>
                 </div>
             ) : (
                 <article className="bento-card rounded-3xl p-6 sm:p-10 border border-card-border shadow-md">

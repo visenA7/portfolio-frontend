@@ -28,15 +28,15 @@ export const ArchitectureSlider = () => {
     const ActiveComponent = currentPanel.Component;
 
     return (
-        <div className="bento-card rounded-2xl overflow-hidden border border-card-border shadow-xl">
-            {/* Terminal / Studio Window Header */}
+        <div className="bento-card rounded-2xl overflow-hidden border border-card-border shadow-lg">
+            {/* Terminal Window Header */}
             <div className="px-4 py-3 bg-card-hover border-b border-border-custom flex flex-wrap items-center justify-between gap-3">
                 <div className="flex items-center gap-2">
-                    <span className="w-3 h-3 rounded-full bg-rose-500/80 inline-block"></span>
-                    <span className="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
-                    <span className="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
+                    <span className="w-2.5 h-2.5 rounded-full bg-neutral-400 dark:bg-neutral-600 inline-block"></span>
+                    <span className="w-2.5 h-2.5 rounded-full bg-neutral-400 dark:bg-neutral-600 inline-block"></span>
+                    <span className="w-2.5 h-2.5 rounded-full bg-neutral-400 dark:bg-neutral-600 inline-block"></span>
                     <span className="text-xs font-mono font-medium text-text-muted ml-2 hidden sm:inline">
-                        architecture_topology.v2
+                        topology_preview.v2
                     </span>
                 </div>
 
@@ -49,9 +49,9 @@ export const ArchitectureSlider = () => {
                             <button
                                 key={panel.id}
                                 onClick={() => setActiveTab(panel.id as "backend" | "frontend")}
-                                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer min-h-[32px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 ${
+                                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer min-h-[32px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 ${
                                     isActive
-                                        ? "bg-sky-600 text-white shadow-xs font-semibold"
+                                        ? "bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 font-semibold shadow-xs"
                                         : "text-text-muted hover:text-text-heading"
                                 }`}
                                 aria-pressed={isActive}
@@ -76,7 +76,7 @@ export const ArchitectureSlider = () => {
                         </p>
                     </div>
                     <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-badge text-badge-text border border-badge-border">
-                        Live Topology
+                        Architecture Map
                     </span>
                 </div>
 
@@ -86,9 +86,9 @@ export const ArchitectureSlider = () => {
             </div>
 
             {/* Bottom Insight Footer */}
-            <div className="px-4 py-2.5 bg-card-hover/60 border-t border-border-custom text-xs font-mono text-text-muted flex items-center justify-between">
+            <div className="px-4 py-2.5 bg-card-hover/40 border-t border-border-custom text-xs font-mono text-text-muted flex items-center justify-between">
                 <span>Interactive Mermaid Visualizer</span>
-                <span className="text-emerald-500 font-medium">99.9% Uptime Design</span>
+                <span className="text-emerald-700 dark:text-emerald-400 font-medium">99.9% Uptime Topologies</span>
             </div>
         </div>
     );

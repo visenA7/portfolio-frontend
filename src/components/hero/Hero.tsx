@@ -9,10 +9,6 @@ export const Hero = () => {
 
     return (
         <section className="py-12 md:py-20 border-b border-border-custom relative overflow-hidden transition-colors duration-200">
-            {/* Ambient Background Glows */}
-            <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-sky-500/10 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
-
             <Container>
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center relative z-10">
 
@@ -20,28 +16,28 @@ export const Hero = () => {
                     <div className="lg:col-span-7 space-y-6">
                         {/* Live Status Pill */}
                         <div className="inline-flex flex-wrap items-center gap-2.5">
-                            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-xs font-mono font-medium">
+                            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 dark:text-emerald-400 text-xs font-mono font-medium">
                                 <span className="relative flex h-2 w-2">
-                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
+                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600 dark:bg-emerald-400"></span>
                                 </span>
                                 {basics.notice_period || "Available for Opportunities"}
                             </span>
 
                             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-card border border-border-custom text-text-muted text-xs font-mono">
-                                <MapPinIcon className="w-3.5 h-3.5 text-sky-500" aria-hidden="true" />
+                                <MapPinIcon className="w-3.5 h-3.5 text-text-muted" aria-hidden="true" />
                                 {basics.location.city}, {basics.location.country}
                             </span>
                         </div>
 
-                        {/* Heading */}
+                        {/* Heading with Executive Metallic Typography */}
                         <div>
-                            <p className="text-xs sm:text-sm font-mono font-semibold uppercase tracking-widest text-sky-600 dark:text-sky-400 mb-2">
+                            <p className="text-xs sm:text-sm font-mono font-semibold uppercase tracking-widest text-text-muted mb-2">
                                 System Architect & Full Stack Engineer
                             </p>
                             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-text-heading tracking-tight leading-[1.08]">
                                 Hi, I'm{" "}
-                                <span className="bg-gradient-to-r from-sky-500 via-indigo-500 to-purple-500 bg-clip-text text-transparent bg-gradient-animate">
+                                <span className="text-text-heading underline decoration-border-custom decoration-2 underline-offset-8">
                                     {basics.name}
                                 </span>
                             </h1>
@@ -55,15 +51,15 @@ export const Hero = () => {
                             Architecting resilient multi-tenant enterprise platforms and microservices using{" "}
                             <strong className="text-text-heading font-semibold">React, Node.js, ASP.NET Core</strong>, and{" "}
                             <strong className="text-text-heading font-semibold">PostgreSQL</strong>. Proven track record handling{" "}
-                            <span className="text-sky-600 dark:text-sky-400 font-semibold font-mono">500K+ daily requests</span> with{" "}
-                            <span className="text-emerald-600 dark:text-emerald-400 font-semibold font-mono">sub-50ms latency</span> and slashing CPU utilization by 50%.
+                            <span className="font-semibold font-mono text-text-heading">500K+ daily requests</span> with{" "}
+                            <span className="text-emerald-700 dark:text-emerald-400 font-semibold font-mono">sub-50ms latency</span> and slashing CPU utilization by 50%.
                         </p>
 
-                        {/* Primary CTAs */}
+                        {/* Primary CTAs - Executive High Contrast */}
                         <div className="flex flex-wrap items-center gap-3 pt-2">
                             <Link
                                 to="/systems"
-                                className="px-5 py-3 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-semibold text-sm transition-all shadow-md shadow-sky-600/20 hover:shadow-sky-500/30 flex items-center gap-2 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500"
+                                className="px-5 py-3 rounded-xl bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-white dark:text-neutral-950 dark:hover:bg-neutral-200 font-semibold text-sm transition-all shadow-sm flex items-center gap-2 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400"
                             >
                                 <span>Explore Systems</span>
                                 <ArrowRightIcon className="w-4 h-4" aria-hidden="true" />
@@ -71,27 +67,27 @@ export const Hero = () => {
 
                             <Link
                                 to="/frontend"
-                                className="px-5 py-3 rounded-xl bg-card border border-border-custom hover:border-sky-500/50 hover:bg-card-hover text-text-heading font-semibold text-sm transition-all shadow-xs flex items-center gap-2 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500"
+                                className="px-5 py-3 rounded-xl bg-card border border-border-custom hover:bg-card-hover hover:border-card-hover-border text-text-heading font-semibold text-sm transition-all shadow-xs flex items-center gap-2 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400"
                             >
                                 <span>Frontend Architecture</span>
                             </Link>
 
                             <Link
                                 to="/resume"
-                                className="px-4 py-3 rounded-xl bg-transparent hover:bg-card-hover text-text-muted hover:text-text-heading border border-border-custom font-semibold text-sm transition-all flex items-center gap-1.5 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500"
+                                className="px-4 py-3 rounded-xl bg-transparent hover:bg-card-hover text-text-muted hover:text-text-heading border border-border-custom font-semibold text-sm transition-all flex items-center gap-1.5 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400"
                             >
-                                <DocumentTextIcon className="w-4 h-4 text-sky-500" aria-hidden="true" />
+                                <DocumentTextIcon className="w-4 h-4 text-text-muted" aria-hidden="true" />
                                 <span>Resume</span>
                             </Link>
                         </div>
 
                         {/* Contacts & Social links */}
-                        <div className="pt-2 flex flex-wrap gap-4 items-center text-sm border-t border-border-custom/80">
+                        <div className="pt-2 flex flex-wrap gap-4 items-center text-sm border-t border-border-custom">
                             <a
                                 href={`mailto:${basics.contact.email}`}
-                                className="flex items-center gap-2 text-text-muted hover:text-sky-500 transition-colors cursor-pointer"
+                                className="flex items-center gap-2 text-text-muted hover:text-text-heading transition-colors cursor-pointer"
                             >
-                                <EnvelopeIcon className="w-4 h-4 text-sky-500" aria-hidden="true" />
+                                <EnvelopeIcon className="w-4 h-4 text-text-muted" aria-hidden="true" />
                                 <span className="font-mono text-xs sm:text-sm">{basics.contact.email}</span>
                             </a>
                             <span className="text-border-custom">|</span>
@@ -99,9 +95,9 @@ export const Hero = () => {
                                 href={`https://${basics.contact.linkedin}`}
                                 target="_blank"
                                 rel="noreferrer"
-                                className="flex items-center gap-2 text-text-muted hover:text-sky-500 transition-colors cursor-pointer"
+                                className="flex items-center gap-2 text-text-muted hover:text-text-heading transition-colors cursor-pointer"
                             >
-                                <svg className="w-4 h-4 fill-current text-sky-500" viewBox="0 0 24 24" aria-hidden="true">
+                                <svg className="w-4 h-4 fill-current text-text-muted" viewBox="0 0 24 24" aria-hidden="true">
                                     <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                                 </svg>
                                 <span className="font-medium text-xs sm:text-sm">LinkedIn</span>
@@ -111,9 +107,7 @@ export const Hero = () => {
 
                     {/* RIGHT COLUMN: Interactive Architecture Studio (5 cols) */}
                     <div className="lg:col-span-5 relative">
-                        <div className="relative">
-                            <ArchitectureSlider />
-                        </div>
+                        <ArchitectureSlider />
                     </div>
 
                 </div>
